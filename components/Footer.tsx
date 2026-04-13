@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, RedditIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, RedditIcon, InstagramIcon } from "./icons";
 import { siteConfig } from "@/lib/data";
 
 export default function Footer() {
@@ -32,6 +32,15 @@ export default function Footer() {
             aria-label="LinkedIn"
           >
             <LinkedinIcon size={18} />
+          </a>
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="Instagram"
+          >
+            <InstagramIcon size={18} />
           </a>
           <a
             href={siteConfig.reddit}

@@ -7,6 +7,7 @@ export const siteConfig = {
   github: "https://github.com/hasnain7abbas",
   linkedin: "#",
   reddit: "https://www.reddit.com/user/hasnain7abbas/",
+  instagram: "https://instagram.com/hasnain7abbas",
   location: "Skardu, Gilgit Baltistan, Pakistan",
 };
 
