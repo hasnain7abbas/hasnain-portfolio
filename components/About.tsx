@@ -39,12 +39,12 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center justify-center"
           >
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-border overflow-hidden shadow-lg">
+            <div className="w-56 h-56 md:w-72 md:h-72 rounded-2xl border-2 border-border overflow-hidden shadow-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="./hasnain.jpg"
                 alt="Hasnain Abbas"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
           </motion.div>
