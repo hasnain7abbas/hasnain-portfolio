@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { aboutText } from "@/lib/data";
 
@@ -41,13 +40,11 @@ export default function About() {
             className="flex items-center justify-center"
           >
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-border overflow-hidden shadow-lg">
-              <Image
-                src="/hasnain.jpg"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="./hasnain.jpg"
                 alt="Hasnain Abbas"
-                width={224}
-                height={224}
                 className="w-full h-full object-cover object-top"
-                priority
               />
             </div>
           </motion.div>
