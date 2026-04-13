@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, RedditIcon, InstagramIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, RedditIcon, InstagramIcon, FacebookIcon, WhatsappIcon } from "./icons";
 import { siteConfig } from "@/lib/data";
 
 export default function Footer() {
@@ -50,6 +50,24 @@ export default function Footer() {
             aria-label="Reddit"
           >
             <RedditIcon size={18} />
+          </a>
+          <a
+            href={siteConfig.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="Facebook"
+          >
+            <FacebookIcon size={18} />
+          </a>
+          <a
+            href={siteConfig.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="WhatsApp"
+          >
+            <WhatsappIcon size={18} />
           </a>
           <a
             href={`mailto:${siteConfig.email}`}

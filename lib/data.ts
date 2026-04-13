@@ -5,9 +5,11 @@ export const siteConfig = {
     "Experimental Physicist · Full Stack Developer · Skardu, Pakistan",
   email: "hsnanrzee1160@gmail.com",
   github: "https://github.com/hasnain7abbas",
-  linkedin: "#",
+  linkedin: "https://www.linkedin.com/in/hasnain-abbas-659943273/",
   reddit: "https://www.reddit.com/user/hasnain7abbas/",
-  instagram: "https://instagram.com/hasnain7abbas",
+  instagram: "https://www.instagram.com/user/hasnain7abbas/",
+  facebook: "https://www.facebook.com/user/hasnain7abbas/",
+  whatsapp: "https://wa.me/923438833262",
   location: "Skardu, Gilgit Baltistan, Pakistan",
 };
 

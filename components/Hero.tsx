@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, ChevronDown } from "lucide-react";
-import { GithubIcon, LinkedinIcon, RedditIcon, InstagramIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, RedditIcon, InstagramIcon, FacebookIcon, WhatsappIcon } from "./icons";
 import { siteConfig } from "@/lib/data";
 import ParticleBackground from "./ParticleBackground";
 
@@ -107,6 +107,24 @@ export default function Hero() {
             aria-label="Reddit"
           >
             <RedditIcon size={22} />
+          </a>
+          <a
+            href={siteConfig.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="Facebook"
+          >
+            <FacebookIcon size={22} />
+          </a>
+          <a
+            href={siteConfig.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="WhatsApp"
+          >
+            <WhatsappIcon size={22} />
           </a>
           <a
             href={`mailto:${siteConfig.email}`}
