@@ -6,6 +6,7 @@ export const siteConfig = {
   email: "hsnanrzee1160@gmail.com",
   github: "https://github.com/hasnain7abbas",
   linkedin: "#",
+  reddit: "https://www.reddit.com/user/hasnain7abbas/",
   location: "Skardu, Gilgit Baltistan, Pakistan",
 };
 

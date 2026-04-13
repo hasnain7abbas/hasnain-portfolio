@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, RedditIcon } from "./icons";
 import { siteConfig } from "@/lib/data";
 
 export default function Contact() {
@@ -75,6 +75,15 @@ export default function Contact() {
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={22} />
+            </a>
+            <a
+              href={siteConfig.reddit}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-lg bg-surface border border-border hover:border-accent text-text-secondary hover:text-accent transition-colors"
+              aria-label="Reddit"
+            >
+              <RedditIcon size={22} />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, ChevronDown } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, RedditIcon } from "./icons";
 import { siteConfig } from "@/lib/data";
 import ParticleBackground from "./ParticleBackground";
 
@@ -89,6 +89,15 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <LinkedinIcon size={22} />
+          </a>
+          <a
+            href={siteConfig.reddit}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent transition-colors"
+            aria-label="Reddit"
+          >
+            <RedditIcon size={22} />
           </a>
           <a
             href={`mailto:${siteConfig.email}`}
