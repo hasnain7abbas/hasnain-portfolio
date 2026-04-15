@@ -15,7 +15,7 @@ export const siteConfig = {
 
 export const aboutText = [
   "I'm currently pursuing my MPhil in Physics at Quaid-e-Azam University, Islamabad, where I work as an experimental physicist focused on memristor synthesis and neuromorphic device research. My work involves polymers and ceramic materials, and I independently fabricate thin films using the sol-gel method.",
-  "Beyond the lab, I'm a self-taught full stack developer with a passion for building desktop applications using Rust and Tauri, and web apps with Next.js. I find deep satisfaction in bridging the gap between physics and software — whether it's simulating spin dynamics in Rust or creating interactive STEM education tools.",
+  "On the software side, I'm entirely self-taught — no CS degree, no bootcamp, no classroom. Whenever I hit a wall, I turn to my younger brother Saqlain Abbas, an AI graduate and professional developer, who has been my go-to teacher since day one. He and his fiancée Aleena Tahir proved that the best education happens outside lecture halls. From Rust and Tauri desktop apps to Next.js web applications, I taught myself to code driven by curiosity and stubbornness — and with a brother patient enough to answer my questions at 2 AM.",
   "I completed my BS in Physics from COMSATS University Islamabad with a CGPA of 3.2/4.0, served as a visiting lecturer, and trained at PINSTECH in optics and LINAC laboratories. I'm from Skardu, a place where mountains meet the sky — and where my curiosity about how things work began.",
 ];
 
@@ -136,6 +136,58 @@ export const experiences: Experience[] = [
     place: "FG Boys Degree College, Skardu",
     date: "Mar 2023",
     detail: "Taught BS Physics students. Supervised laboratory work.",
+  },
+];
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  tags: string[];
+}
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "memristor-journey",
+    title: "My Journey into Memristor Synthesis",
+    date: "Mar 2026",
+    excerpt:
+      "How I went from reading about neuromorphic computing to fabricating memristive devices in the lab — the failures, breakthroughs, and everything in between.",
+    content:
+      "When I first encountered the concept of memristors during my BS, I was fascinated by the idea of a device that could remember its own resistance history. Fast forward to my MPhil research at QAU, and I'm now synthesizing these devices using sol-gel thin film fabrication. The path wasn't straightforward — early attempts with polymer-based substrates failed spectacularly, and it took months of iterating on ceramic material compositions before I got reproducible switching behavior. Working with Keithley IV analysis and impedance spectroscopy has taught me patience and precision. The intersection of material science and computing architecture is where I believe the next revolution in AI hardware will come from.",
+    tags: ["Physics", "Research", "Memristors"],
+  },
+  {
+    id: "tauri-vs-electron",
+    title: "Why I Chose Tauri Over Electron",
+    date: "Jan 2026",
+    excerpt:
+      "A physicist's perspective on building desktop apps — why Rust-powered Tauri won me over and what I learned shipping Madar with it.",
+    content:
+      "As someone who came from physics, not computer science, I needed a desktop framework that wouldn't fight me at every turn. Electron was the obvious choice, but the 200MB+ bundle size for a simple app felt wrong. Then I discovered Tauri — a Rust-based alternative that produces binaries under 10MB. Building Madar (my STEM simulation browser with 247 simulations) with Tauri v2 taught me that constraints breed creativity. The Rust backend forced me to think about memory safety and performance in ways JavaScript never did. Yes, the learning curve was steeper, but the result is an app that starts instantly, uses minimal RAM, and feels native on every platform.",
+    tags: ["Rust", "Tauri", "Development"],
+  },
+  {
+    id: "physics-to-code",
+    title: "From Lab Notebooks to Git Commits",
+    date: "Nov 2025",
+    excerpt:
+      "How my physics training shaped the way I write software — and why experimental methodology makes you a better developer.",
+    content:
+      "People often ask how I bridge physics and software development. The truth is, they're not as different as they seem. In the lab, I form hypotheses, design experiments, control variables, and analyze results. In code, I write tests, isolate bugs, profile performance, and ship features. The systematic thinking I developed doing XRD analysis and FTIR spectroscopy directly translates to debugging complex software systems. My brother Saqlain and his fiancée Aleena showed me that the gap between science and engineering is smaller than academia makes it seem. The key insight: both disciplines reward curiosity and punish assumptions.",
+    tags: ["Physics", "Software", "Career"],
+  },
+  {
+    id: "skardu-stem",
+    title: "STEM Education in Skardu — What I Wish Existed",
+    date: "Sep 2025",
+    excerpt:
+      "Growing up in Gilgit-Baltistan, access to quality STEM resources was limited. That's why I build tools like Madar.",
+    content:
+      "Skardu is one of the most beautiful places on Earth — surrounded by Karakoram peaks and crystal-clear lakes. But when I was growing up, the nearest well-equipped physics lab was hundreds of kilometers away. I learned optics from textbook diagrams, not from actual experiments. This is exactly why I built Madar — a free, offline simulation browser that puts 247 interactive STEM simulations on any computer. No internet required, no expensive lab equipment needed. When I was a visiting lecturer at GB Institute of Science & Technology, I saw students' eyes light up when they could finally interact with the phenomena they'd only read about. Technology should democratize education, not gatekeep it.",
+    tags: ["Education", "Skardu", "STEM"],
   },
 ];
 
