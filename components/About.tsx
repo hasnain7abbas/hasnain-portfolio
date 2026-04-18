@@ -69,16 +69,8 @@ export default function About() {
                 Saqlain Abbas
               </a>
               , an AI graduate and professional developer, who has been my go-to
-              teacher since day one. He and his fianc&eacute;e{" "}
-              <a
-                href="https://aleenatahir1.github.io/My_Portfolio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:text-accent-hover underline underline-offset-2 decoration-accent/40 hover:decoration-accent transition-colors"
-              >
-                Aleena Tahir
-              </a>{" "}
-              proved that the best education happens outside lecture halls. From
+              teacher since day one. He proved that the best education happens
+              outside lecture halls. From
               Rust and Tauri desktop apps to Next.js web applications, I taught
               myself to code driven by curiosity and stubbornness — and with a
               brother patient enough to answer my questions at 2 AM.
@@ -124,21 +116,6 @@ export default function About() {
                   className="text-text-secondary/50 group-hover:text-accent transition-colors shrink-0"
                 />
               </a>
-              <a
-                href="https://aleenatahir1.github.io/My_Portfolio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 px-4 py-3 rounded-xl bg-surface border border-border hover:border-accent transition-all duration-300"
-              >
-                <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                  <span className="text-accent font-medium">Aleena Tahir</span>{" "}
-                  — Mentor
-                </span>
-                <ExternalLink
-                  size={14}
-                  className="text-text-secondary/50 group-hover:text-accent transition-colors shrink-0"
-                />
-              </a>
             </motion.div>
           </div>
 
@@ -164,7 +141,7 @@ export default function About() {
                 height={320}
                 loading="eager"
                 decoding="async"
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
               />
             </div>
           </motion.div>

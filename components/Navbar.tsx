@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {

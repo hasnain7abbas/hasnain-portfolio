@@ -125,12 +125,12 @@ export default function Hero() {
             View Projects
           </motion.a>
           <motion.a
-            href="#contact"
+            href="#blog"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="px-5 sm:px-6 py-3 border border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-colors text-center text-sm sm:text-base"
           >
-            Get in Touch
+            Read Blog
           </motion.a>
         </motion.div>
 

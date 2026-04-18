@@ -51,8 +51,18 @@ export default function Education() {
                 initial={{ rotate: 0 }}
                 whileHover={{ rotate: 12 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className="mb-3 sm:mb-4"
               >
-                <GraduationCap size={24} className="text-accent mb-3 sm:mb-4" />
+                {edu.logo ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={edu.logo}
+                    alt={edu.institution}
+                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded"
+                  />
+                ) : (
+                  <GraduationCap size={24} className="text-accent" />
+                )}
               </motion.div>
               <h3 className="text-sm sm:text-base md:text-lg font-mono font-semibold text-text-primary mb-1">
                 {edu.degree}

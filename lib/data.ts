@@ -15,7 +15,7 @@ export const siteConfig = {
 
 export const aboutText = [
   "I'm currently pursuing my MPhil in Physics at Quaid-e-Azam University, Islamabad, where I work as an experimental physicist focused on memristor synthesis and neuromorphic device research. My work involves polymers and ceramic materials, and I independently fabricate thin films using the sol-gel method.",
-  "On the software side, I'm entirely self-taught — no CS degree, no bootcamp, no classroom. Whenever I hit a wall, I turn to my younger brother Saqlain Abbas, an AI graduate and professional developer, who has been my go-to teacher since day one. He and his fiancée Aleena Tahir proved that the best education happens outside lecture halls. From Rust and Tauri desktop apps to Next.js web applications, I taught myself to code driven by curiosity and stubbornness — and with a brother patient enough to answer my questions at 2 AM.",
+  "On the software side, I'm entirely self-taught — no CS degree, no bootcamp, no classroom. Whenever I hit a wall, I turn to my younger brother Saqlain Abbas, an AI graduate and professional developer, who has been my go-to teacher since day one. He proved that the best education happens outside lecture halls. From Rust and Tauri desktop apps to Next.js web applications, I taught myself to code driven by curiosity and stubbornness — and with a brother patient enough to answer my questions at 2 AM.",
   "I completed my BS in Physics from COMSATS University Islamabad with a CGPA of 3.2/4.0, served as a visiting lecturer, and trained at PINSTECH in optics and LINAC laboratories. I'm from Skardu, a place where mountains meet the sky — and where my curiosity about how things work began.",
 ];
 
@@ -65,6 +65,14 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    title: "Visualize Physics",
+    description:
+      "A Visual Introduction to Quantum & Statistical Physics — Interactive Tauri desktop app with 18 simulations, 200+ statistical tools, and KaTeX math rendering.",
+    tech: ["TypeScript", "Tauri", "Rust"],
+    link: "https://github.com/hasnain7abbas/visualize-physics",
+    featured: true,
+  },
   {
     title: "Madar",
     description:
@@ -176,7 +184,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "How my physics training shaped the way I write software — and why experimental methodology makes you a better developer.",
     content:
-      "People often ask how I bridge physics and software development. The truth is, they're not as different as they seem. In the lab, I form hypotheses, design experiments, control variables, and analyze results. In code, I write tests, isolate bugs, profile performance, and ship features. The systematic thinking I developed doing XRD analysis and FTIR spectroscopy directly translates to debugging complex software systems. My brother Saqlain and his fiancée Aleena showed me that the gap between science and engineering is smaller than academia makes it seem. The key insight: both disciplines reward curiosity and punish assumptions.",
+      "People often ask how I bridge physics and software development. The truth is, they're not as different as they seem. In the lab, I form hypotheses, design experiments, control variables, and analyze results. In code, I write tests, isolate bugs, profile performance, and ship features. The systematic thinking I developed doing XRD analysis and FTIR spectroscopy directly translates to debugging complex software systems. My brother Saqlain and Alina Tahir, the best AI student I know, showed me that the gap between science and engineering is smaller than academia makes it seem. The key insight: both disciplines reward curiosity and punish assumptions.",
     tags: ["Physics", "Software", "Career"],
   },
   {
@@ -196,6 +204,7 @@ export interface Education {
   institution: string;
   date: string;
   note?: string;
+  logo?: string;
 }
 
 export const education: Education[] = [
@@ -203,12 +212,14 @@ export const education: Education[] = [
     degree: "MPhil Physics",
     institution: "Quaid-e-Azam University, Islamabad",
     date: "2024 – 2026",
+    logo: "./qau-logo.png",
   },
   {
     degree: "BS Physics",
     institution: "COMSATS University, Islamabad",
     date: "2019 – 2023",
     note: "CGPA 3.2/4.0",
+    logo: "./comsats-logo.png",
   },
   {
     degree: "HSSC",
