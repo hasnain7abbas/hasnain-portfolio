@@ -1,183 +1,95 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Mail, ChevronDown } from "lucide-react";
-import {
-  GithubIcon,
-  LinkedinIcon,
-  RedditIcon,
-  InstagramIcon,
-  FacebookIcon,
-  WhatsappIcon,
-} from "./icons";
 import { siteConfig } from "@/lib/data";
-import ParticleBackground from "./ParticleBackground";
 
-/* ── Animation variants ── */
+/* Fig. 1 geometry: a pinched hysteresis loop, I = G(t)·V with V = sin t.
+   Motion.tsx reads the same constants to run the tracer along it. */
+const W = 400, H = 320, CX = 200, CY = 160, RX = 150, RY = 150, G0 = 0.5, G1 = 0.42;
 
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.18 } },
-};
-
-/* Name: dramatic blur-to-focus with scale */
-const nameReveal = {
-  hidden: { opacity: 0, scale: 0.9, filter: "blur(20px)" },
-  show: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 1, ease },
-  },
-};
-
-/* Body text: blur + slide up */
-const blurUp = {
-  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease },
-  },
-};
-
-/* Social icons: spring-based pop with stagger */
-const socialContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      opacity: { duration: 0.3 },
-    },
-  },
-};
-
-const socialPop = {
-  hidden: { opacity: 0, scale: 0 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: { type: "spring" as const, stiffness: 300, damping: 20 },
-  },
-};
-
-const socials = [
-  { href: siteConfig.github, icon: <GithubIcon size={22} />, label: "GitHub" },
-  { href: siteConfig.linkedin, icon: <LinkedinIcon size={22} />, label: "LinkedIn" },
-  { href: siteConfig.instagram, icon: <InstagramIcon size={22} />, label: "Instagram" },
-  { href: siteConfig.reddit, icon: <RedditIcon size={22} />, label: "Reddit" },
-  { href: siteConfig.facebook, icon: <FacebookIcon size={22} />, label: "Facebook" },
-  { href: siteConfig.whatsapp, icon: <WhatsappIcon size={22} />, label: "WhatsApp" },
-  { href: `mailto:${siteConfig.email}`, icon: <Mail size={22} />, label: "Email" },
-];
+function loopPath() {
+  const steps = 160;
+  let d = "";
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * Math.PI * 2;
+    const v = Math.sin(t);
+    const c = v * (G0 + G1 * Math.cos(t));
+    d += `${i ? "L" : "M"}${(CX + v * RX).toFixed(2)} ${(CY - c * RY).toFixed(2)} `;
+  }
+  return d.trim();
+}
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <ParticleBackground />
+    <section id="top" className="hero" data-hero-section>
+      <div className="wrap">
+        <div className="hero-top label" data-hero="meta">
+          <span>{siteConfig.role}</span>
+          <span>{siteConfig.affiliation}</span>
+        </div>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="text-center z-10 px-6"
-      >
-        {/* Name — blur-to-focus reveal */}
-        <motion.h1
-          variants={nameReveal}
-          className="text-3xl sm:text-5xl md:text-7xl font-mono font-bold text-text-primary mb-3 sm:mb-4"
-        >
-          {siteConfig.name}
-        </motion.h1>
+        <h1 className="hero-title" data-hero="title" data-perch="text">
+          <span className="line">Hasnain</span>
+          <span className="line line--2">Abbas</span>
+        </h1>
 
-        <motion.p
-          variants={blurUp}
-          className="text-sm sm:text-lg md:text-xl text-text-secondary mb-1.5 sm:mb-2 max-w-2xl mx-auto"
-        >
-          {siteConfig.tagline}
-        </motion.p>
+        <div className="hero-body">
+          <div className="hero-copy">
+            <p className="lede" data-hero="item">
+              I build memristive and synaptic devices for neuromorphic computing, from the sol-gel
+              beaker to the neural network.
+            </p>
+            <div className="hero-cta" data-hero="item">
+              <a href={siteConfig.resume} className="btn btn--solid" target="_blank" rel="noopener" data-perch>
+                Read the résumé <span className="arrow arrow--down" aria-hidden="true">↓</span>
+              </a>
+              <a href={`mailto:${siteConfig.email}`} className="btn" data-perch>
+                Write to me <span className="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
 
-        <motion.p
-          variants={blurUp}
-          className="text-xs sm:text-sm text-text-secondary mb-6 sm:mb-8"
-        >
-          {siteConfig.shortBio}
-        </motion.p>
-
-        {/* CTA buttons — stack on very small screens */}
-        <motion.div
-          variants={blurUp}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 w-full max-w-sm sm:max-w-none mx-auto"
-        >
-          <motion.a
-            href="#projects"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-5 sm:px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors text-center text-sm sm:text-base"
-          >
-            View Projects
-          </motion.a>
-          <motion.a
-            href="#blog"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-5 sm:px-6 py-3 border border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-colors text-center text-sm sm:text-base"
-          >
-            Read Blog
-          </motion.a>
-        </motion.div>
-
-        {/* Social icons — spring pop stagger */}
-        <motion.div
-          variants={socialContainer}
-          className="flex flex-wrap gap-4 sm:gap-5 justify-center text-text-secondary"
-        >
-          {socials.map((social) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target={
-                social.href.startsWith("mailto:") ? undefined : "_blank"
-              }
-              rel={
-                social.href.startsWith("mailto:")
-                  ? undefined
-                  : "noopener noreferrer"
-              }
-              variants={socialPop}
-              whileHover={{ scale: 1.2, y: -2 }}
-              className="hover:text-accent transition-colors p-1"
-              aria-label={social.label}
+          <figure className="hero-fig fig" data-hero="fig">
+            <svg
+              viewBox={`0 0 ${W} ${H}`}
+              role="img"
+              aria-label="Schematic current–voltage curve of a memristor: a figure-of-eight loop pinched at the origin."
+              data-loop
+              data-cx={CX}
+              data-cy={CY}
+              data-rx={RX}
+              data-ry={RY}
+              data-g0={G0}
+              data-g1={G1}
             >
-              {social.icon}
-            </motion.a>
-          ))}
-        </motion.div>
-      </motion.div>
+              {[-2, -1, 1, 2].map((k) => (
+                <line key={`x${k}`} className="tick" x1={CX + k * 75} y1={20} x2={CX + k * 75} y2={H - 20} />
+              ))}
+              {[-1, 1].map((k) => (
+                <line key={`y${k}`} className="tick" x1={20} y1={CY + k * 70} x2={W - 20} y2={CY + k * 70} />
+              ))}
+              <path className="axis" pathLength={1} d={`M20 ${CY} H${W - 20}`} data-draw />
+              <path className="axis" pathLength={1} d={`M${CX} ${H - 12} V12`} data-draw />
+              <text className="axis-label" x={W - 20} y={CY + 18} textAnchor="end">
+                V
+              </text>
+              <text className="axis-label" x={CX + 10} y={20}>
+                I
+              </text>
+              <path className="loop" pathLength={1} d={loopPath()} data-draw="loop" />
+              <circle className="tracer" r="4.5" cx={CX} cy={CY} data-tracer />
+            </svg>
+            <figcaption className="label" data-perch>
+              Fig. 1 — Pinched current–voltage hysteresis, the fingerprint of a memristor. Schematic.
+            </figcaption>
+          </figure>
+        </div>
 
-      {/* Scroll indicator — delayed appearance */}
-      <motion.a
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 text-text-secondary hover:text-accent transition-colors"
-        aria-label="Scroll down"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <ChevronDown size={28} />
-        </motion.div>
-      </motion.a>
+        <div className="hero-meta label" data-hero="meta">
+          <span>{siteConfig.location}</span>
+          <span>Seeking a PhD position, 2026</span>
+          <a href="#research" className="link link--quiet">
+            Scroll ↓
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

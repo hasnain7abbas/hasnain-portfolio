@@ -1,23 +1,44 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/lib/theme-provider";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const newsreader = Newsreader({
+  variable: "--font-serif",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "600"],
+  display: "swap",
 });
 
+const description =
+  "Hasnain Abbas is an experimental physicist at Quaid-i-Azam University working on memristive and synaptic devices for neuromorphic computing: sol-gel BiFeO₃ thin films, resistive switching and device-aware neural-network simulation.";
+
 export const metadata: Metadata = {
-  title: "Hasnain Abbas — Physicist & Developer",
-  description:
-    "Experimental physicist working on memristor synthesis and neuromorphic devices. Full stack developer building desktop tools with Rust/Tauri and web apps with Next.js.",
+  metadataBase: new URL("https://hasnain7abbas.github.io/hasnain-portfolio/"),
+  title: "Hasnain Abbas — Experimental physicist",
+  description,
+  openGraph: {
+    title: "Hasnain Abbas — Experimental physicist",
+    description,
+    type: "website",
+    url: "https://hasnain7abbas.github.io/hasnain-portfolio/",
+  },
 };
+
+export const viewport: Viewport = {
+  themeColor: "#eae5d9",
+};
+
+/* Marks the document as scripted so the hero can wait for its load sequence,
+   and releases it after a few seconds no matter what. */
+const boot = `document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("is-ready")},4000);`;
 
 export default function RootLayout({
   children,
@@ -25,14 +46,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+    <html lang="en" suppressHydrationWarning className={`${newsreader.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: boot }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

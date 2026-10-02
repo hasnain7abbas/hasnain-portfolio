@@ -1,59 +1,317 @@
 export const siteConfig = {
   name: "Hasnain Abbas",
-  tagline: "Physicist by Training, Developer by Obsession",
-  shortBio:
-    "Experimental Physicist · Full Stack Developer · Skardu, Pakistan",
+  role: "Experimental physicist",
+  focus: "Memristive and synaptic devices for neuromorphic computing",
+  affiliation: "Quaid-i-Azam University, Islamabad",
+  location: "Skardu, Gilgit-Baltistan, Pakistan",
   email: "hsnanrzee1160@gmail.com",
+  resume: "/hasnain-portfolio/Hasnain-Abbas-Resume.pdf",
   github: "https://github.com/hasnain7abbas",
   linkedin: "https://www.linkedin.com/in/hasnain-abbas-659943273/",
   reddit: "https://www.reddit.com/user/hasnain7abbas/",
   instagram: "https://www.instagram.com/user/hasnain7abbas/",
   facebook: "https://www.facebook.com/user/hasnain7abbas/",
   whatsapp: "https://wa.me/923438833262",
-  location: "Skardu, Gilgit Baltistan, Pakistan",
 };
 
-export const aboutText = [
-  "I'm currently pursuing my MPhil in Physics at Quaid-e-Azam University, Islamabad, where I work as an experimental physicist focused on memristor synthesis and neuromorphic device research. My work involves polymers and ceramic materials, and I independently fabricate thin films using the sol-gel method.",
-  "On the software side, I'm entirely self-taught — no CS degree, no bootcamp, no classroom. Whenever I hit a wall, I turn to my younger brother Saqlain Abbas, an AI graduate and professional developer, who has been my go-to teacher since day one. He proved that the best education happens outside lecture halls. From Rust and Tauri desktop apps to Next.js web applications, I taught myself to code driven by curiosity and stubbornness — and with a brother patient enough to answer my questions at 2 AM.",
-  "I completed my BS in Physics from COMSATS University Islamabad with a CGPA of 3.2/4.0, served as a visiting lecturer, and trained at PINSTECH in optics and LINAC laboratories. I'm from Skardu, a place where mountains meet the sky — and where my curiosity about how things work began.",
+export const researchProfile = [
+  "I am an MPhil physics researcher at Quaid-i-Azam University, working across the full memristive stack: from sol-gel synthesis of Co-substituted BiFeO₃ thin films, through ferroelectric and resistive-switching characterization, to device-aware neural-network simulation that uses measured device conductance as synaptic weights.",
+  "I grew up in Skardu, where the nearest well-equipped physics lab was hundreds of kilometres away. That distance is why I teach, and why I build free simulation tools alongside the lab work.",
 ];
 
-export const physicsSkills = [
-  "Memristor Synthesis",
-  "Neuromorphic Devices",
-  "Thin Film Fabrication (Sol-Gel)",
-  "XRD Analysis",
-  "FTIR Spectroscopy",
-  "Sputter Coating",
-  "Sawyer-Tower Ferroelectric Measurement",
-  "Keithley IV Analysis",
-  "Dielectric Characterization",
-  "Impedance Spectroscopy",
-  "Quantum Optics",
-  "Solid State Physics",
-  "Statistical Physics",
-  "LASER Ablation",
-  "Nanoparticle Synthesis",
+export const researchInterests = [
+  "Memristive and synaptic devices",
+  "Neuromorphic and in-memory computing hardware",
+  "Resistive switching in oxide thin films",
+  "Ferroelectric and multiferroic thin films",
+  "Device-aware neural-network simulation",
+  "Sol-gel processing of functional ceramics",
 ];
 
-export const devSkills = [
-  "Python",
-  "C++",
-  "Lua",
-  "TypeScript",
-  "Rust",
-  "Next.js",
-  "React",
-  "Tailwind CSS",
-  "Tauri (v2)",
-  "Git/GitHub",
-  "Framer Motion",
-  "Machine Learning",
-  "Deep Learning",
-  "Mathematica",
-  "Docker",
-  "Linux",
+export interface Stage {
+  name: string;
+  summary: string;
+  detail: string;
+  tools: string[];
+}
+
+/* The four stages of the thesis work, in the order a sample travels. */
+export const pipeline: Stage[] = [
+  {
+    name: "Material",
+    summary: "Co-substituted BiFeO₃ via sol-gel",
+    detail:
+      "Synthesize Co-substituted BiFeO₃ ceramic and polymer-blended precursors, tuning the chemistry until the films switch reliably.",
+    tools: ["Sol-gel synthesis", "Precursor chemistry"],
+  },
+  {
+    name: "Thin film",
+    summary: "Spin coating, annealing, XRD / FTIR",
+    detail:
+      "Spin-coat and anneal the films, then verify phase purity and microstructure by XRD, FTIR, thickness profilometry and impedance spectroscopy.",
+    tools: ["Spin coating", "XRD", "FTIR", "Profilometry"],
+  },
+  {
+    name: "Device",
+    summary: "Resistive switching, P–E loops, pulsed I–V",
+    detail:
+      "Extract remanent polarization and coercive field on a Sawyer-Tower tester, and drive a Keithley 2602 SourceMeter with custom Lua (TSP) scripts for reproducible DC sweep and pulse protocols.",
+    tools: ["Keithley 2602", "Lua (TSP)", "Sawyer-Tower"],
+  },
+  {
+    name: "Network",
+    summary: "Measured conductance as synaptic weights",
+    detail:
+      "Map the extracted device conductance into the CrossSim neuromorphic simulator and train MLP networks in PyTorch on MNIST, benchmarking inference accuracy with the measured devices as weights.",
+    tools: ["CrossSim", "PyTorch", "MNIST"],
+  },
+];
+
+export interface LabMedia {
+  kind: "photo" | "video";
+  src: string;
+  poster?: string;
+  alt: string;
+  caption: string;
+  date: string;
+  width: number;
+  height: number;
+}
+
+/* Fall 2026 teaching-assistant work at Quaid-i-Azam University. */
+export const teachingAssistant = {
+  role: "Teaching assistant, physics laboratory",
+  place: "Quaid-i-Azam University, Islamabad",
+  term: "Fall 2026",
+  status: "Ongoing",
+  summary:
+    "This semester I assist in the physics teaching laboratory. The benches below are from the first weeks of term: the Hall effect, nuclear magnetic resonance and the spectra of gas-discharge lamps.",
+  benches: [
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/hall-effect.webp",
+      alt: "A lab bench with three power supplies, three multimeters and a Hall effect apparatus wired together with red and blue leads.",
+      caption: "Hall effect bench: supplies, meters and the sample between the pole pieces.",
+      date: "18 Aug 2026",
+      width: 1600,
+      height: 901,
+    },
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/nmr.webp",
+      alt: "A nuclear magnetic resonance setup: a DC supply, an electromagnet with two coils, an NMR oscillator and an oscilloscope showing a trace.",
+      caption: "Nuclear magnetic resonance: magnet, oscillator and the resonance trace on the scope.",
+      date: "3 Sep 2026",
+      width: 1600,
+      height: 901,
+    },
+  ] as LabMedia[],
+  spectra: [
+    {
+      kind: "video",
+      src: "/hasnain-portfolio/lab/spectra.mp4",
+      poster: "/hasnain-portfolio/lab/spectra-poster.webp",
+      alt: "A glowing magenta gas-discharge tube in a dark room, the camera moving across to the spectrometer beside it.",
+      caption: "Discharge tube and spectrometer, lights off.",
+      date: "16 Sep 2026",
+      width: 720,
+      height: 1280,
+    },
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/discharge-1.webp",
+      alt: "A narrow gas-discharge tube glowing magenta in the dark.",
+      caption: "Magenta discharge.",
+      date: "16 Sep 2026",
+      width: 900,
+      height: 1599,
+    },
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/discharge-2.webp",
+      alt: "A discharge lamp glowing pink-white between two dark housings.",
+      caption: "Lamp in its housing.",
+      date: "17 Sep 2026",
+      width: 900,
+      height: 1599,
+    },
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/discharge-3.webp",
+      alt: "A discharge lamp glowing bright yellow-orange, seen through a round opening.",
+      caption: "Yellow discharge.",
+      date: "17 Sep 2026",
+      width: 900,
+      height: 1599,
+    },
+    {
+      kind: "photo",
+      src: "/hasnain-portfolio/lab/discharge-4.webp",
+      alt: "A tall gas-discharge tube glowing blue-green.",
+      caption: "Blue-green discharge.",
+      date: "17 Sep 2026",
+      width: 900,
+      height: 1600,
+    },
+    {
+      kind: "video",
+      src: "/hasnain-portfolio/lab/probe-station.mp4",
+      poster: "/hasnain-portfolio/lab/probe-station-poster.webp",
+      alt: "A probe tip under a microscope, shown on a monitor above a probe station and a DC supply.",
+      caption: "Probe tip under the microscope.",
+      date: "24 Sep 2026",
+      width: 720,
+      height: 1280,
+    },
+  ] as LabMedia[],
+};
+
+export interface Entry {
+  title: string;
+  place: string;
+  date: string;
+  note?: string;
+  points?: string[];
+  logo?: string;
+}
+
+export const teachingRecord: Entry[] = [
+  {
+    title: "Lecturer in Physics",
+    place: "FG Boys Degree College, Skardu",
+    date: "Mar 2023 – Aug 2024",
+    points: [
+      "Taught BS Physics coursework and mentored students through problem sessions across three academic terms.",
+      "Supervised higher-secondary laboratory sessions and demonstrated core experiments.",
+    ],
+  },
+  {
+    title: "Visiting Lecturer",
+    place: "Gilgit Baltistan Institute of Science and Technology, Skardu",
+    date: "Oct 2023 – Dec 2023",
+    points: [
+      "Lectured and supervised laboratory work for undergraduate medical students, linking physics principles to medical applications.",
+    ],
+  },
+];
+
+export const education: Entry[] = [
+  {
+    title: "Master of Philosophy (MPhil) in Physics",
+    place: "Quaid-i-Azam University, Islamabad",
+    date: "Sep 2024 – Present",
+    note: "Expected Sep 2026",
+    points: [
+      "Thesis: Co-substituted BiFeO₃ Thin Films for Neuromorphic Computing and Memristor Applications.",
+      "Supervisor: Dr. Ghulam Hassnain Jaffari.",
+    ],
+    logo: "/hasnain-portfolio/qau-logo.png",
+  },
+  {
+    title: "Bachelor of Science (BS) in Physics",
+    place: "COMSATS University Islamabad",
+    date: "Feb 2019 – Feb 2023",
+    note: "CGPA 3.2 / 4.0 (79.9%)",
+    points: [
+      "Thesis: Fast Forward Stimulated Raman Adiabatic Transfer of Atomic Population in a Delta-Type Atomic Medium (analytical modeling).",
+      "Coursework: Solid State Physics, Statistical Physics, Quantum Optics, High Energy Physics, Biophysics.",
+    ],
+    logo: "/hasnain-portfolio/comsats-logo.png",
+  },
+  {
+    title: "Higher Secondary School Certificate (HSSC)",
+    place: "FG Boys Inter College, Karachi Cantt",
+    date: "Apr 2016 – Aug 2018",
+  },
+];
+
+export const researchExperience: Entry[] = [
+  {
+    title: "Graduate Researcher, Thin-Film and Memristor Lab",
+    place: "Quaid-i-Azam University, Islamabad",
+    date: "Sep 2024 – Present",
+    points: [
+      "Fabrication: Co-substituted BiFeO₃ ceramic and polymer-blended thin films by sol-gel spin coating, tuning precursor chemistry, annealing profile and film thickness for stable resistive switching.",
+      "Structural characterization: phase purity and microstructure by XRD, FTIR, thickness profilometry and impedance spectroscopy, correlated with the measured switching response.",
+      "Ferroelectric characterization: remanent polarization and coercive field across compositions from P–E hysteresis loops on a Sawyer-Tower tester.",
+      "Memristive and synaptic testing: a Keithley 2602 SourceMeter automated with custom Lua (TSP) scripts for reproducible DC sweep and pulse protocols.",
+      "Device-to-system benchmarking: measured conductance mapped into CrossSim, with MLP networks trained in PyTorch on MNIST.",
+    ],
+  },
+  {
+    title: "Research Intern, Optics and LINAC Labs",
+    place: "Pakistan Institute of Nuclear Science and Technology (PINSTECH), Islamabad",
+    date: "2023",
+    points: [
+      "Synthesized colloidal silver and gold nanoparticles by pulsed laser ablation.",
+      "Generated and analyzed shock waves driven by a high-power laser system.",
+      "Rotated through the Optics Lab, the LINAC facility and specialized high-energy physics labs.",
+    ],
+  },
+];
+
+export const conferences = [
+  {
+    title: "48th International Nathiagali Summer College on Physics and Contemporary Needs",
+    place: "Nathiagali, Pakistan",
+    date: "Jul 2023",
+  },
+  {
+    title: "Capacity Building Sessions for Lecturers",
+    place: "FG Boys Degree College Skardu, HEC Pakistan",
+    date: "Apr 2023",
+  },
+  {
+    title: "Workshop on Fundamentals of Quantum Mechanics",
+    place: "PIEAS, Islamabad",
+    date: "Jan 2023",
+  },
+];
+
+export const awards = [
+  {
+    title: "Best Lecturer Award",
+    place: "Al-Zehra Girls College, Skardu",
+    date: "Dec 2023",
+  },
+  {
+    title: "Best Organizer Award, Seminar on Modern Physics",
+    place: "COMSATS University Islamabad",
+    date: "Aug 2020",
+  },
+];
+
+export const methods = [
+  {
+    area: "Thin-film and device fabrication",
+    items:
+      "Sol-gel synthesis of ceramic and polymer-blended films, spin coating, thermal annealing, pulsed laser ablation (Ag and Au nanoparticles)",
+  },
+  {
+    area: "Electrical and memristive testing",
+    items:
+      "Keithley 2602 SourceMeter (TSP scripting), DC sweep and pulse protocols, I–V and resistive-switching measurements, impedance analysis",
+  },
+  {
+    area: "Materials characterization",
+    items: "XRD, FTIR, Sawyer-Tower ferroelectric tester (P–E loops), thickness profilometry",
+  },
+  {
+    area: "Neuromorphic simulation and ML",
+    items: "CrossSim crossbar simulator, device-aware MLP training and evaluation on MNIST in PyTorch",
+  },
+  {
+    area: "Programming",
+    items: "Python (PyTorch, NumPy, Matplotlib), Lua (Keithley TSP), C++, Rust, TypeScript, Mathematica",
+  },
+  {
+    area: "Other software",
+    items: "LaTeX, Adobe Creative Suite (scientific figures, image and video editing)",
+  },
+  {
+    area: "Languages",
+    items: "English (fluent), Urdu (fluent), Balti (native)",
+  },
 ];
 
 export interface Project {
@@ -61,89 +319,50 @@ export interface Project {
   description: string;
   tech: string[];
   link: string;
-  featured?: boolean;
 }
 
 export const projects: Project[] = [
   {
     title: "Visualize Physics",
     description:
-      "A Visual Introduction to Quantum & Statistical Physics — Interactive Tauri desktop app with 18 simulations, 200+ statistical tools, and KaTeX math rendering.",
+      "A visual introduction to quantum and statistical physics: a Tauri desktop app with 18 simulations, 200+ statistical tools and KaTeX math rendering.",
     tech: ["TypeScript", "Tauri", "Rust"],
     link: "https://github.com/hasnain7abbas/visualize-physics",
-    featured: true,
   },
   {
     title: "Madar",
     description:
-      "Interactive STEM Simulation Browser — 247 physics, chemistry, biology, math & engineering simulations. Desktop app (Tauri) + web.",
+      "An offline STEM simulation browser with 247 physics, chemistry, biology, math and engineering simulations, for desktop and web.",
     tech: ["TypeScript", "Tauri", "React"],
     link: "https://github.com/hasnain7abbas/Madar",
-    featured: true,
   },
   {
     title: "Seeing Theory Desktop",
     description:
-      "A visual, interactive introduction to probability & statistics — reimagined as a fast, offline Tauri v2 desktop app with Rust-powered computation.",
+      "A visual, interactive introduction to probability and statistics, rebuilt as a fast offline Tauri v2 app with Rust-powered computation.",
     tech: ["TypeScript", "Tauri v2", "Rust"],
     link: "https://github.com/hasnain7abbas/seeing-theory-desktop",
   },
   {
     title: "Spintronics",
     description:
-      "A pure Rust library for simulating spin dynamics, spin current generation, and conversion phenomena in magnetic and topological materials.",
+      "A pure Rust library for simulating spin dynamics, spin current generation and conversion phenomena in magnetic and topological materials.",
     tech: ["Rust"],
     link: "https://github.com/hasnain7abbas/spintronics",
   },
   {
     title: "DigitalShelf",
     description:
-      "A visual temporary clipboard dropzone — drag files, text, images, and links onto a floating shelf panel.",
+      "A temporary clipboard dropzone: drag files, text, images and links onto a floating shelf panel.",
     tech: ["TypeScript"],
     link: "https://github.com/hasnain7abbas/DigitalShelf",
   },
   {
     title: "Matrix Calculator",
     description:
-      "Premium dark-themed matrix determinant calculator with recursive cofactor expansion & step-by-step breakdowns. Zero dependencies, single HTML file.",
+      "A matrix determinant calculator with recursive cofactor expansion and step-by-step breakdowns, in a single HTML file.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "https://github.com/hasnain7abbas/matix-calculator",
-  },
-];
-
-export interface Experience {
-  role: string;
-  place: string;
-  date: string;
-  detail: string;
-}
-
-export const experiences: Experience[] = [
-  {
-    role: "MPhil Researcher",
-    place: "Quaid-e-Azam University, Islamabad",
-    date: "Sep 2024 – Present",
-    detail:
-      "Memristor synthesis and neuromorphic device research. Working with polymers and ceramic materials, thin film fabrication via sol-gel.",
-  },
-  {
-    role: "Research Intern",
-    place: "PINSTECH, Islamabad",
-    date: "2023",
-    detail:
-      "Trained in Optics & LINAC labs. LASER ablation of Ag/Au nanoparticles. Shock wave generation and analysis.",
-  },
-  {
-    role: "Visiting Lecturer",
-    place: "GB Institute of Science & Technology, Skardu",
-    date: "Oct 2023 – Dec 2023",
-    detail: "Lecturer and lab instructor for medical students.",
-  },
-  {
-    role: "Visiting Lecturer",
-    place: "FG Boys Degree College, Skardu",
-    date: "Mar 2023",
-    detail: "Taught BS Physics students. Supervised laboratory work.",
   },
 ];
 
@@ -196,34 +415,5 @@ export const blogPosts: BlogPost[] = [
     content:
       "Skardu is one of the most beautiful places on Earth — surrounded by Karakoram peaks and crystal-clear lakes. But when I was growing up, the nearest well-equipped physics lab was hundreds of kilometers away. I learned optics from textbook diagrams, not from actual experiments. This is exactly why I built Madar — a free, offline simulation browser that puts 247 interactive STEM simulations on any computer. No internet required, no expensive lab equipment needed. When I was a visiting lecturer at GB Institute of Science & Technology, I saw students' eyes light up when they could finally interact with the phenomena they'd only read about. Technology should democratize education, not gatekeep it.",
     tags: ["Education", "Skardu", "STEM"],
-  },
-];
-
-export interface Education {
-  degree: string;
-  institution: string;
-  date: string;
-  note?: string;
-  logo?: string;
-}
-
-export const education: Education[] = [
-  {
-    degree: "MPhil Physics",
-    institution: "Quaid-e-Azam University, Islamabad",
-    date: "2024 – 2026",
-    logo: "./qau-logo.png",
-  },
-  {
-    degree: "BS Physics",
-    institution: "COMSATS University, Islamabad",
-    date: "2019 – 2023",
-    note: "CGPA 3.2/4.0",
-    logo: "./comsats-logo.png",
-  },
-  {
-    degree: "HSSC",
-    institution: "FG Boys Inter College, Karachi Cantt",
-    date: "2016 – 2018",
   },
 ];

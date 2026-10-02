@@ -1,36 +1,33 @@
-import Navbar from "@/components/Navbar";
+import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import Blog from "@/components/Blog";
+import { Research, Pipeline } from "@/components/Research";
+import Teaching from "@/components/Teaching";
+import Curriculum from "@/components/Curriculum";
+import Software from "@/components/Software";
+import Writing from "@/components/Writing";
 import Footer from "@/components/Footer";
-import ScrollProgress from "@/components/ScrollProgress";
-import SectionDivider from "@/components/SectionDivider";
+import FlyingWren from "@/components/Wren";
+import Motion from "@/components/Motion";
 
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
-      <Navbar />
+      <a href="#research" className="skip">
+        Skip to content
+      </a>
+      <Nav />
       <main>
         <Hero />
-        <SectionDivider />
-        <About />
-        <SectionDivider />
-        <Skills />
-        <SectionDivider />
-        <Projects />
-        <SectionDivider />
-        <Experience />
-        <SectionDivider />
-        <Education />
-        <SectionDivider />
-        <Blog />
+        <Research />
+        <Pipeline />
+        <Teaching />
+        <Curriculum />
+        <Software />
+        <Writing />
       </main>
       <Footer />
+      <FlyingWren />
+      <Motion />
     </>
   );
 }
