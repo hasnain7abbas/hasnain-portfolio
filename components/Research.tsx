@@ -8,9 +8,9 @@ export function Research() {
     <section id="research" className="section">
       <div className="wrap">
         <header className="section-head">
-          <span className="label">01 — Research profile</span>
+          <span className="label">01 — Research</span>
           <h2 className="h2" data-split data-perch="text">
-            The full memristive stack, <em>from film to network.</em>
+            Memristive oxide thin films for neuromorphic computing
           </h2>
         </header>
 
@@ -19,9 +19,11 @@ export function Research() {
             <p className="lede" data-reveal>
               {chem(researchProfile[0])}
             </p>
-            <p className="prose" style={{ marginTop: "1.75rem" }} data-reveal>
-              {researchProfile[1]}
-            </p>
+            {researchProfile.slice(1).map((paragraph, i) => (
+              <p key={i} className="prose" style={i === 0 ? { marginTop: "1.75rem" } : undefined} data-reveal>
+                {chem(paragraph)}
+              </p>
+            ))}
           </div>
 
           <figure className="profile-photo" data-reveal>
@@ -67,15 +69,15 @@ export function Pipeline() {
           <div className="pipeline-head">
             <div>
               <span className="label" style={{ display: "block", marginBottom: "1.25rem" }}>
-                02 — Thesis work, in the order a sample travels
+                02 — Thesis work
               </span>
               <h2 id="pipeline-title" className="h2" data-split data-perch="text">
-                Four stages, <em>one device.</em>
+                From material to network
               </h2>
             </div>
             <p className="prose" data-reveal>
-              Graduate Researcher, Thin-Film and Memristor Lab, Quaid-i-Azam University. Supervised by Dr. Ghulam
-              Hassnain Jaffari.
+              Thin-Film and Memristor Lab, Quaid-i-Azam University. The four stages below follow one sample from
+              synthesis to simulation.
             </p>
           </div>
           <div className="pipeline-progress" aria-hidden="true" data-perch>

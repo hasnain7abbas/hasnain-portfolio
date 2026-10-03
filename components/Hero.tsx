@@ -25,23 +25,22 @@ export default function Hero() {
           <span>{siteConfig.affiliation}</span>
         </div>
 
-        <h1 className="hero-title" data-hero="title" data-perch="text">
-          <span className="line">Hasnain</span>
-          <span className="line line--2">Abbas</span>
-        </h1>
-
-        <div className="hero-body">
-          <div className="hero-copy">
+        <div className="hero-main">
+          <div className="hero-lead">
+            <h1 className="hero-title" data-hero="title" data-perch="text">
+              <span className="line">Hasnain</span>
+              <span className="line line--2">Abbas</span>
+            </h1>
             <p className="lede" data-hero="item">
-              I build memristive and synaptic devices for neuromorphic computing, from the sol-gel
-              beaker to the neural network.
+              I fabricate and characterize BiFeO<sub>3</sub>-based thin-film memristors, and test them as
+              synaptic weights for neuromorphic computing.
             </p>
             <div className="hero-cta" data-hero="item">
               <a href={siteConfig.resume} className="btn btn--solid" target="_blank" rel="noopener" data-perch>
-                Read the résumé <span className="arrow arrow--down" aria-hidden="true">↓</span>
+                Résumé (PDF) <span className="arrow arrow--down" aria-hidden="true">↓</span>
               </a>
               <a href={`mailto:${siteConfig.email}`} className="btn" data-perch>
-                Write to me <span className="arrow" aria-hidden="true">→</span>
+                Email <span className="arrow" aria-hidden="true">→</span>
               </a>
             </div>
           </div>
@@ -77,14 +76,14 @@ export default function Hero() {
               <circle className="tracer" r="4.5" cx={CX} cy={CY} data-tracer />
             </svg>
             <figcaption className="label" data-perch>
-              Fig. 1 — Pinched current–voltage hysteresis, the fingerprint of a memristor. Schematic.
+              Fig. 1. Pinched current–voltage hysteresis loop, the signature of memristive switching (schematic).
             </figcaption>
           </figure>
         </div>
 
         <div className="hero-meta label" data-hero="meta">
           <span>{siteConfig.location}</span>
-          <span>Seeking a PhD position, 2026</span>
+          <span>Seeking a PhD position</span>
           <a href="#research" className="link link--quiet">
             Scroll ↓
           </a>

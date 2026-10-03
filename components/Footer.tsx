@@ -18,7 +18,7 @@ export default function Footer() {
           07 — Contact
         </span>
         <p className="foot-call" data-split data-perch="text">
-          Looking for a PhD position in neuromorphic computing.
+          Seeking a PhD position in neuromorphic computing and memristive devices.
         </p>
         <a href={`mailto:${siteConfig.email}`} className="foot-mail link" data-reveal>
           {siteConfig.email}

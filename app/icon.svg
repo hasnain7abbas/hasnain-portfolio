@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- The Paperwren wren (https://github.com/Razee4315/Paperwren), MIT License. -->
-  <rect width="64" height="64" rx="10" fill="#eae5d9"/>
+  <rect width="64" height="64" rx="10" fill="#d9d3c4"/>
   <path d="M27 27.5 L12.6 9.6 Q10.8 7.4 8.6 8.8 L6.6 10.4 Q4.6 12 6 14.2 L19.5 33.5 Z" fill="#1f5750"/>
   <path d="M29 53 L27.5 59 M35 53 L36 59" stroke="#1f5750" stroke-width="2.2" stroke-linecap="round"/>
   <path d="M50.5 19 C48 12.5 39 11 35 17 C32.5 21 29 24.5 24 26.5 C15.5 30 13 38 15.5 44.5 C18.5 51.5 25.5 55 33 54.5 C44 54 51.5 45.5 51.5 34 C51.5 29.5 52.5 26 53.5 24 Z" fill="#2b6e66"/>

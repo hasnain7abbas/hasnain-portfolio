@@ -19,9 +19,9 @@ export default function Curriculum() {
     <section id="cv" className="section">
       <div className="wrap">
         <header className="section-head">
-          <span className="label">04 — Curriculum vitae</span>
+          <span className="label">04 — Record</span>
           <h2 className="h2" data-split data-perch="text">
-            Education, research <em>and the record.</em>
+            Curriculum vitae
           </h2>
           <p style={{ marginTop: "2rem" }} data-reveal>
             <a href={siteConfig.resume} className="btn" target="_blank" rel="noopener" data-perch>

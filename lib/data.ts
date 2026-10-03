@@ -15,8 +15,9 @@ export const siteConfig = {
 };
 
 export const researchProfile = [
-  "I am an MPhil physics researcher at Quaid-i-Azam University, working across the full memristive stack: from sol-gel synthesis of Co-substituted BiFeO₃ thin films, through ferroelectric and resistive-switching characterization, to device-aware neural-network simulation that uses measured device conductance as synaptic weights.",
-  "I grew up in Skardu, where the nearest well-equipped physics lab was hundreds of kilometres away. That distance is why I teach, and why I build free simulation tools alongside the lab work.",
+  "I am an MPhil researcher in physics at Quaid-i-Azam University, Islamabad, supervised by Dr. Ghulam Hassnain Jaffari. My thesis concerns Co-substituted BiFeO₃ thin films for memristor and neuromorphic applications.",
+  "The work covers the whole device chain: sol-gel synthesis and spin coating of the films, structural and ferroelectric characterization, electrical measurement of resistive switching, and neural-network simulation in which the measured device conductances serve as synaptic weights.",
+  "I hold a BS in Physics from COMSATS University Islamabad, where my thesis treated stimulated Raman adiabatic transfer of atomic population analytically, and I trained in the Optics and LINAC laboratories at PINSTECH. I am seeking a PhD position in neuromorphic computing, synaptic devices and memristor-based hardware.",
 ];
 
 export const researchInterests = [
@@ -39,30 +40,30 @@ export interface Stage {
 export const pipeline: Stage[] = [
   {
     name: "Material",
-    summary: "Co-substituted BiFeO₃ via sol-gel",
+    summary: "Co-substituted BiFeO₃ by the sol-gel route",
     detail:
-      "Synthesize Co-substituted BiFeO₃ ceramic and polymer-blended precursors, tuning the chemistry until the films switch reliably.",
+      "I prepare Co-substituted BiFeO₃ ceramic and polymer-blended films by sol-gel processing, tuning precursor chemistry, annealing profile and film thickness to obtain stable resistive switching.",
     tools: ["Sol-gel synthesis", "Precursor chemistry"],
   },
   {
     name: "Thin film",
-    summary: "Spin coating, annealing, XRD / FTIR",
+    summary: "Deposition and structural characterization",
     detail:
-      "Spin-coat and anneal the films, then verify phase purity and microstructure by XRD, FTIR, thickness profilometry and impedance spectroscopy.",
+      "Films are spin-coated and annealed. I verify phase purity and microstructure by XRD, FTIR, thickness profilometry and impedance spectroscopy, and correlate them with the measured switching response.",
     tools: ["Spin coating", "XRD", "FTIR", "Profilometry"],
   },
   {
     name: "Device",
-    summary: "Resistive switching, P–E loops, pulsed I–V",
+    summary: "Ferroelectric and resistive-switching measurements",
     detail:
-      "Extract remanent polarization and coercive field on a Sawyer-Tower tester, and drive a Keithley 2602 SourceMeter with custom Lua (TSP) scripts for reproducible DC sweep and pulse protocols.",
+      "Remanent polarization and coercive field come from P–E hysteresis loops on a Sawyer-Tower tester. A Keithley 2602 SourceMeter, automated with Lua (TSP) scripts, runs reproducible DC-sweep and pulse protocols for I–V and conductance data.",
     tools: ["Keithley 2602", "Lua (TSP)", "Sawyer-Tower"],
   },
   {
     name: "Network",
     summary: "Measured conductance as synaptic weights",
     detail:
-      "Map the extracted device conductance into the CrossSim neuromorphic simulator and train MLP networks in PyTorch on MNIST, benchmarking inference accuracy with the measured devices as weights.",
+      "I map the extracted device conductances into the CrossSim neuromorphic simulator and train MLP networks in PyTorch on MNIST, benchmarking inference accuracy with the measured devices acting as synaptic weights.",
     tools: ["CrossSim", "PyTorch", "MNIST"],
   },
 ];
@@ -85,13 +86,13 @@ export const teachingAssistant = {
   term: "Fall 2026",
   status: "Ongoing",
   summary:
-    "This semester I assist in the physics teaching laboratory. The benches below are from the first weeks of term: the Hall effect, nuclear magnetic resonance and the spectra of gas-discharge lamps.",
+    "This semester I am a teaching assistant in the physics teaching laboratory. The experiments shown here are from the first weeks of term: the Hall effect, nuclear magnetic resonance and the emission spectra of gas-discharge lamps.",
   benches: [
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/hall-effect.webp",
       alt: "A lab bench with three power supplies, three multimeters and a Hall effect apparatus wired together with red and blue leads.",
-      caption: "Hall effect bench: supplies, meters and the sample between the pole pieces.",
+      caption: "Hall effect: power supplies, multimeters and the sample between the magnet pole pieces.",
       date: "18 Aug 2026",
       width: 1600,
       height: 901,
@@ -100,7 +101,7 @@ export const teachingAssistant = {
       kind: "photo",
       src: "/hasnain-portfolio/lab/nmr.webp",
       alt: "A nuclear magnetic resonance setup: a DC supply, an electromagnet with two coils, an NMR oscillator and an oscilloscope showing a trace.",
-      caption: "Nuclear magnetic resonance: magnet, oscillator and the resonance trace on the scope.",
+      caption: "Nuclear magnetic resonance: electromagnet, NMR oscillator and oscilloscope.",
       date: "3 Sep 2026",
       width: 1600,
       height: 901,
@@ -112,7 +113,7 @@ export const teachingAssistant = {
       src: "/hasnain-portfolio/lab/spectra.mp4",
       poster: "/hasnain-portfolio/lab/spectra-poster.webp",
       alt: "A glowing magenta gas-discharge tube in a dark room, the camera moving across to the spectrometer beside it.",
-      caption: "Discharge tube and spectrometer, lights off.",
+      caption: "Gas-discharge tube and spectrometer.",
       date: "16 Sep 2026",
       width: 720,
       height: 1280,
@@ -121,7 +122,7 @@ export const teachingAssistant = {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-1.webp",
       alt: "A narrow gas-discharge tube glowing magenta in the dark.",
-      caption: "Magenta discharge.",
+      caption: "Discharge tube, magenta emission.",
       date: "16 Sep 2026",
       width: 900,
       height: 1599,
@@ -130,7 +131,7 @@ export const teachingAssistant = {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-2.webp",
       alt: "A discharge lamp glowing pink-white between two dark housings.",
-      caption: "Lamp in its housing.",
+      caption: "Spectral lamp in its housing.",
       date: "17 Sep 2026",
       width: 900,
       height: 1599,
@@ -139,7 +140,7 @@ export const teachingAssistant = {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-3.webp",
       alt: "A discharge lamp glowing bright yellow-orange, seen through a round opening.",
-      caption: "Yellow discharge.",
+      caption: "Discharge lamp, yellow emission.",
       date: "17 Sep 2026",
       width: 900,
       height: 1599,
@@ -148,7 +149,7 @@ export const teachingAssistant = {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-4.webp",
       alt: "A tall gas-discharge tube glowing blue-green.",
-      caption: "Blue-green discharge.",
+      caption: "Discharge tube, blue-green emission.",
       date: "17 Sep 2026",
       width: 900,
       height: 1600,
@@ -158,7 +159,7 @@ export const teachingAssistant = {
       src: "/hasnain-portfolio/lab/probe-station.mp4",
       poster: "/hasnain-portfolio/lab/probe-station-poster.webp",
       alt: "A probe tip under a microscope, shown on a monitor above a probe station and a DC supply.",
-      caption: "Probe tip under the microscope.",
+      caption: "Probe tip under the optical microscope.",
       date: "24 Sep 2026",
       width: 720,
       height: 1280,
@@ -378,40 +379,40 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: "memristor-journey",
-    title: "My Journey into Memristor Synthesis",
+    title: "Learning to synthesize memristors",
     date: "Mar 2026",
     excerpt:
-      "How I went from reading about neuromorphic computing to fabricating memristive devices in the lab — the failures, breakthroughs, and everything in between.",
+      "How I went from reading about neuromorphic computing to fabricating memristive devices: what failed, what worked, and what the measurements taught me.",
     content:
       "When I first encountered the concept of memristors during my BS, I was fascinated by the idea of a device that could remember its own resistance history. Fast forward to my MPhil research at QAU, and I'm now synthesizing these devices using sol-gel thin film fabrication. The path wasn't straightforward — early attempts with polymer-based substrates failed spectacularly, and it took months of iterating on ceramic material compositions before I got reproducible switching behavior. Working with Keithley IV analysis and impedance spectroscopy has taught me patience and precision. The intersection of material science and computing architecture is where I believe the next revolution in AI hardware will come from.",
     tags: ["Physics", "Research", "Memristors"],
   },
   {
     id: "tauri-vs-electron",
-    title: "Why I Chose Tauri Over Electron",
+    title: "Why I chose Tauri over Electron",
     date: "Jan 2026",
     excerpt:
-      "A physicist's perspective on building desktop apps — why Rust-powered Tauri won me over and what I learned shipping Madar with it.",
+      "Why I build desktop tools with Rust-based Tauri rather than Electron, and what shipping Madar with it taught me.",
     content:
       "As someone who came from physics, not computer science, I needed a desktop framework that wouldn't fight me at every turn. Electron was the obvious choice, but the 200MB+ bundle size for a simple app felt wrong. Then I discovered Tauri — a Rust-based alternative that produces binaries under 10MB. Building Madar (my STEM simulation browser with 247 simulations) with Tauri v2 taught me that constraints breed creativity. The Rust backend forced me to think about memory safety and performance in ways JavaScript never did. Yes, the learning curve was steeper, but the result is an app that starts instantly, uses minimal RAM, and feels native on every platform.",
     tags: ["Rust", "Tauri", "Development"],
   },
   {
     id: "physics-to-code",
-    title: "From Lab Notebooks to Git Commits",
+    title: "From lab notebooks to Git commits",
     date: "Nov 2025",
     excerpt:
-      "How my physics training shaped the way I write software — and why experimental methodology makes you a better developer.",
+      "How experimental training shapes the way I write software, and why the method carries over.",
     content:
       "People often ask how I bridge physics and software development. The truth is, they're not as different as they seem. In the lab, I form hypotheses, design experiments, control variables, and analyze results. In code, I write tests, isolate bugs, profile performance, and ship features. The systematic thinking I developed doing XRD analysis and FTIR spectroscopy directly translates to debugging complex software systems. My brother Saqlain and Alina Tahir, the best AI student I know, showed me that the gap between science and engineering is smaller than academia makes it seem. The key insight: both disciplines reward curiosity and punish assumptions.",
     tags: ["Physics", "Software", "Career"],
   },
   {
     id: "skardu-stem",
-    title: "STEM Education in Skardu — What I Wish Existed",
+    title: "STEM education in Skardu: what I wish had existed",
     date: "Sep 2025",
     excerpt:
-      "Growing up in Gilgit-Baltistan, access to quality STEM resources was limited. That's why I build tools like Madar.",
+      "Growing up in Gilgit-Baltistan, I had little access to laboratory equipment. That is why I build offline simulation tools such as Madar.",
     content:
       "Skardu is one of the most beautiful places on Earth — surrounded by Karakoram peaks and crystal-clear lakes. But when I was growing up, the nearest well-equipped physics lab was hundreds of kilometers away. I learned optics from textbook diagrams, not from actual experiments. This is exactly why I built Madar — a free, offline simulation browser that puts 247 interactive STEM simulations on any computer. No internet required, no expensive lab equipment needed. When I was a visiting lecturer at GB Institute of Science & Technology, I saw students' eyes light up when they could finally interact with the phenomena they'd only read about. Technology should democratize education, not gatekeep it.",
     tags: ["Education", "Skardu", "STEM"],

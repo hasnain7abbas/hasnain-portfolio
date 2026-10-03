@@ -39,7 +39,7 @@ export default function Teaching() {
         <header className="section-head">
           <span className="label">03 — Teaching</span>
           <h2 className="h2" data-split data-perch="text">
-            This semester, <em>in the teaching lab.</em>
+            Physics teaching laboratory, Fall 2026
           </h2>
         </header>
 
@@ -88,7 +88,7 @@ export default function Teaching() {
       <div className="wrap" style={{ marginTop: "clamp(5rem, 10vw, 9rem)" }}>
         <div className="cols">
           <div className="aside">
-            <h3 className="block-title">Before this</h3>
+            <h3 className="block-title">Previous appointments</h3>
           </div>
           <div className="main">
             <Entries items={teachingRecord} />

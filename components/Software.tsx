@@ -7,15 +7,16 @@ export default function Software() {
         <header className="section-head">
           <span className="label">05 — Software</span>
           <h2 className="h2" data-split data-perch="text">
-            Tools I built <em>to teach with.</em>
+            Simulation and teaching software
           </h2>
           <p className="prose" style={{ marginTop: "2rem" }} data-reveal>
-            I taught myself to program, with my younger brother{" "}
+            Alongside the laboratory work I write simulation and teaching software, mostly in Rust and TypeScript. I
+            am self-taught as a programmer, with my younger brother{" "}
             <a href="https://saqlainabbas.app/" target="_blank" rel="noopener noreferrer" className="link">
               Saqlain Abbas
             </a>{" "}
-            as the teacher I turn to when I am stuck. Most of what I build is free, offline simulation software for
-            students who do not have a lab nearby.
+            as the person I turn to when I am stuck. Most of these tools are free and run offline, for students who
+            do not have a laboratory nearby.
           </p>
         </header>
 

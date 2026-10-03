@@ -7,7 +7,7 @@ export default function Writing() {
         <header className="section-head">
           <span className="label">06 — Writing</span>
           <h2 className="h2" data-split data-perch="text">
-            Notes on physics, <em>code and Skardu.</em>
+            Notes and essays
           </h2>
         </header>
 

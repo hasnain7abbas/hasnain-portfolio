@@ -135,8 +135,8 @@ export default function Motion() {
         const hero = document.querySelector<HTMLElement>("[data-hero-section]");
         if (hero) {
           const st = { trigger: hero, start: "top top", end: "bottom top", scrub: true };
-          gsap.to("[data-hero=title]", { yPercent: -14, ease: "none", scrollTrigger: st });
-          gsap.to("[data-hero=fig]", { y: -90, ease: "none", scrollTrigger: st });
+          gsap.to("[data-hero=title]", { yPercent: -18, ease: "none", scrollTrigger: st });
+          gsap.to("[data-hero=fig]", { y: -70, ease: "none", scrollTrigger: st });
           gsap.to("[data-hero=meta]", { opacity: 0, ease: "none", scrollTrigger: { ...st, end: "40% top" } });
         }
 
@@ -208,6 +208,7 @@ export default function Motion() {
                 SplitText.create(el, {
                   type: "lines",
                   mask: "lines",
+                  linesClass: "split-line",
                   autoSplit: true,
                   onSplit: (self) =>
                     gsap.from(self.lines, {

@@ -4,16 +4,16 @@
 /* ── Tokens ─────────────────────────────────────────────────────────────
    Field-notebook palette: paper, pine ink, the wren's moss and its beak. */
 :root {
-  --paper: #eae5d9;
-  --paper-deep: #e0dacb;
-  --ink: #15302b;
-  --ink-soft: #48605a;
-  --moss: #2b6e66;
-  --clay: #b8532e;
+  --paper: #d9d3c4;
+  --paper-deep: #cdc6b4;
+  --ink: #132b27;
+  --ink-soft: #3c524c;
+  --moss: #1f5750;
+  --clay: #a8472a;
   --night: #0f211e;
   --night-ink: #eae5d9;
   --night-soft: #a9bdb6;
-  --rule: rgb(21 48 43 / 0.2);
+  --rule: rgb(19 43 39 / 0.24);
   --rule-night: rgb(234 229 217 / 0.2);
 
   --serif: var(--font-serif), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -24,8 +24,8 @@
   --step-body: 1.125rem;
   --step-lede: clamp(1.35rem, 2.1vw, 1.8rem);
   --step-h3: clamp(1.45rem, 2.2vw, 1.9rem);
-  --step-h2: clamp(2.5rem, 6vw, 5.25rem);
-  --step-display: clamp(4.4rem, 17vw, 15.5rem);
+  --step-h2: clamp(2rem, 4.2vw, 3.6rem);
+  --step-display: clamp(3.1rem, 9.5vw, 8.5rem);
 
   --gutter: clamp(20px, 4vw, 56px);
   --section: clamp(5.5rem, 11vw, 10.5rem);
@@ -161,13 +161,16 @@ sub {
 
 .h2 {
   font-size: var(--step-h2);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  font-weight: 380;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  max-width: 24ch;
   text-wrap: balance;
 }
-.h2 em {
-  font-weight: 340;
+/* SplitText's line masks: extra room so ascenders and descenders are never clipped. */
+.split-line-mask {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
 }
 
 .h3 {
@@ -395,8 +398,13 @@ sub {
   padding-bottom: clamp(1.5rem, 4vh, 3rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: clip;
+}
+.hero > .wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .hero-top {
   display: flex;
@@ -404,37 +412,41 @@ sub {
   justify-content: space-between;
   gap: 8px 32px;
 }
-.hero-title {
-  font-size: var(--step-display);
-  line-height: 0.84;
-  letter-spacing: -0.04em;
-  font-weight: 340;
-  margin-top: clamp(1.5rem, 5vh, 4rem);
-  margin-left: -0.045em;
-}
-.hero-title .line {
-  display: block;
-}
-.hero-title .line--2 {
-  font-style: italic;
-  font-weight: 300;
-  padding-left: clamp(1.2rem, 9vw, 9rem);
-  /* Room for the italic descender-free line's swash inside the mask. */
-  padding-right: 0.08em;
-}
-.hero-body {
+.hero-main {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 24px;
-  row-gap: 2.5rem;
-  align-items: end;
-  margin-top: clamp(2rem, 6vh, 4.5rem);
+  row-gap: 3rem;
+  align-items: center;
+  margin-block: auto;
+  padding-block: clamp(1.5rem, 5vh, 4rem);
 }
-.hero-copy {
+.hero-lead {
   grid-column: 1 / -1;
 }
-.hero-copy .lede {
-  max-width: 30ch;
+.hero-title {
+  font-size: var(--step-display);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-weight: 360;
+  margin-left: -0.04em;
+}
+/* Each line is its own mask for the load reveal. The padding keeps the tops of
+   the capitals and the italic overhang inside the mask; the margins take the
+   same space back out of the layout. */
+.hero-title .line {
+  display: block;
+  padding: 0.14em 0.12em 0.1em;
+  margin: -0.14em -0.12em -0.1em;
+}
+.hero-title .line--2 {
+  font-style: italic;
+  font-weight: 320;
+  margin-left: calc(clamp(1rem, 5vw, 5rem) - 0.12em);
+}
+.hero-lead .lede {
+  max-width: 31ch;
+  margin-top: clamp(1.75rem, 4vh, 3rem);
 }
 .hero-cta {
   display: flex;
@@ -444,18 +456,16 @@ sub {
 }
 .hero-fig {
   grid-column: 1 / -1;
-  max-width: 440px;
+  max-width: 420px;
 }
 @media (min-width: 900px) {
-  .hero-copy {
-    grid-column: 1 / span 6;
+  .hero-lead {
+    grid-column: 1 / span 7;
   }
   .hero-fig {
     grid-column: 9 / -1;
     justify-self: end;
     width: 100%;
-    /* Sits up against the name, the way a figure sits in a column of text. */
-    margin-top: clamp(-11rem, -12vw, -4rem);
   }
 }
 .hero-meta {
@@ -463,7 +473,6 @@ sub {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px 32px;
-  margin-top: clamp(2rem, 5vh, 3.5rem);
   padding-top: 14px;
   border-top: 1px solid var(--rule);
 }
@@ -621,10 +630,10 @@ figcaption.label {
   margin-bottom: 1.25rem;
 }
 .stage-name {
-  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  font-weight: 340;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 380;
 }
 .stage-summary {
   margin-top: 0.9rem;
@@ -664,7 +673,7 @@ figcaption.label {
     flex-wrap: nowrap;
   }
   .pipeline-head .h2 {
-    font-size: clamp(2.2rem, 4.4vw, 4.25rem);
+    font-size: clamp(1.9rem, 3.4vw, 3rem);
   }
   .pipeline-head .prose {
     font-size: 1rem;
@@ -674,7 +683,7 @@ figcaption.label {
     margin-top: clamp(1.25rem, 3vh, 3rem);
   }
   .stage-name {
-    font-size: clamp(2.4rem, 4.6vw, 4.5rem);
+    font-size: clamp(2rem, 3.4vw, 3rem);
   }
   .stage .n {
     margin-bottom: 0.75rem;
@@ -905,10 +914,10 @@ figcaption.label {
   transition: padding var(--dur) var(--ease-out-expo), color var(--dur-fast) var(--ease-out-expo);
 }
 .project-title {
-  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  font-weight: 360;
+  font-size: clamp(1.6rem, 2.9vw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  font-weight: 400;
   transition: transform var(--dur) var(--ease-out-expo);
 }
 .project-body {
@@ -1028,11 +1037,11 @@ figcaption.label {
   padding-bottom: calc(2rem + env(safe-area-inset-bottom));
 }
 .foot-call {
-  font-size: clamp(2.6rem, 7.6vw, 7rem);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  font-weight: 340;
-  max-width: 14ch;
+  font-size: clamp(2.1rem, 5vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  font-weight: 380;
+  max-width: 20ch;
   text-wrap: balance;
 }
 .foot-mail {

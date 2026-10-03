@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eae5d9",
+  themeColor: "#d9d3c4",
 };
 
 /* Marks the document as scripted so the hero can wait for its load sequence,

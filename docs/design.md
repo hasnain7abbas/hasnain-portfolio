@@ -34,16 +34,19 @@ icons, the theme switcher.
 
 | Token | Value | Role |
 |---|---|---|
-| `--paper` | `#eae5d9` | Page background |
-| `--paper-deep` | `#e0dacb` | Alternate section background |
-| `--ink` | `#15302b` | Text |
-| `--ink-soft` | `#48605a` | Secondary text |
-| `--moss` | `#2b6e66` | Accent: links on hover, institutions, the I–V curve |
-| `--clay` | `#b8532e` | Focus ring and the curve tracer only |
+| `--paper` | `#d9d3c4` | Page background (a mid-tone paper, deliberately not off-white) |
+| `--paper-deep` | `#cdc6b4` | Alternate section background |
+| `--ink` | `#132b27` | Text |
+| `--ink-soft` | `#3c524c` | Secondary text |
+| `--moss` | `#1f5750` | Accent: links on hover, institutions, the I–V curve |
+| `--clay` | `#a8472a` | Focus ring and the curve tracer only |
 | `--night` | `#0f211e` | Teaching section and footer |
 
 - Type: Newsreader (display and text, optical sizing on) and JetBrains Mono (labels).
-- Scale: body 18px, display up to 15.5rem. Display tracking -0.04em.
+- Scale: body 18px, section headings up to 3.6rem, the name up to 8.5rem. The name is the only oversized element.
+- Headings are plain descriptive titles in roman, the way a paper or CV would set them. No slogans, no two-tone italic taglines.
+- Copy is written as a physicist would write it: say what was made, measured or simulated, and with what.
+- Text that sits in a reveal mask needs padding inside the mask so capitals and italics are not clipped (`.hero-title .line`, `.split-line-mask`).
 - Grid: 12 columns, 24px gutter, 1360px max width.
 - Corners: 2px. Borders: hairline rules only, no boxed cards, no shadows.
 - Texture: paper grain at 5% opacity.
