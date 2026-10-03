@@ -617,9 +617,19 @@ figcaption.label {
   background: var(--moss);
   transform-origin: left center;
 }
+/* Stacked fallback (narrow or short screens): same gutters as .wrap. */
 .track {
   display: grid;
   gap: 0;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (min-width: 900px) {
+  .track {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(2rem, 5vw, 5rem);
+  }
 }
 .stage {
   padding-block: 2.25rem;
@@ -691,6 +701,8 @@ figcaption.label {
   .track {
     display: flex;
     width: max-content;
+    max-width: none;
+    margin-inline: 0;
     margin-top: clamp(1.25rem, 4vh, 3.5rem);
     padding-inline: max(var(--gutter), calc((100vw - 1360px) / 2 + var(--gutter)));
     will-change: transform;
