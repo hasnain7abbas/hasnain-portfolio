@@ -656,6 +656,10 @@ figcaption.label {
     flex-direction: column;
     justify-content: center;
   }
+  /* Auto margins would shrink-wrap the column's children. */
+  .pipeline-pin > .wrap {
+    width: 100%;
+  }
   .pipeline-head {
     flex-wrap: nowrap;
   }
