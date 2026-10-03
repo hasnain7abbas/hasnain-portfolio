@@ -183,7 +183,7 @@ export default function Motion() {
                 line.style.overflow = "clip";
                 line.innerHTML = `<span style="display:block">${line.innerHTML}</span>`;
               });
-              title.setAttribute("aria-label", title.textContent ?? "");
+              title.setAttribute("aria-label", lines.map((line) => line.textContent).join(" "));
               const inner = lines.map((line) => line.firstElementChild);
               const tl = gsap.timeline({ defaults: { ease: EXPO } });
               tl.set("[data-hero]", { visibility: "visible" })
