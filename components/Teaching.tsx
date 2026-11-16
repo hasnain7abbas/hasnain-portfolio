@@ -34,7 +34,7 @@ function Media({ item, parallax = false }: { item: LabMedia; parallax?: boolean 
 
 export default function Teaching() {
   return (
-    <section id="teaching" className="section section--night" data-wren-zone="night">
+    <section id="teaching" className="section section--night" data-cat-zone="night">
       <div className="wrap">
         <header className="section-head">
           <span className="label">03 — Teaching</span>
@@ -48,7 +48,7 @@ export default function Teaching() {
             <p className="label status">
               {ta.status} · {ta.term}
             </p>
-            <h3 className="h3" style={{ marginTop: "0.9rem" }}>
+            <h3 className="h3" style={{ marginTop: "0.9rem" }} data-perch="text">
               {ta.role}
             </h3>
             <p style={{ color: "var(--moss)", fontStyle: "italic", marginTop: "0.3rem" }}>{ta.place}</p>
@@ -75,7 +75,7 @@ export default function Teaching() {
       <div className="spectra" role="group" aria-label="Gas-discharge lamps and the probe station" tabIndex={0}>
         {ta.spectra.map((item) => (
           <figure key={item.src} data-reveal>
-            <div className="frame">
+            <div className="frame" data-perch>
               <Media item={item} />
             </div>
             <figcaption className="label">

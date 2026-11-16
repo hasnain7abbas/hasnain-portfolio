@@ -10,9 +10,18 @@ pine-green ink, serif text, monospaced labels for dates and captions, hairline
 rules instead of cards. Content comes from the résumé and is treated as a CV,
 not as marketing.
 
-**Signature move:** the Paperwren wren leaves the logo and roams the page,
-perching on headings, rules, buttons and photo frames, and turning pale over
-the dark sections.
+**Signature move:** Schrödinger's cat. It lives in the ψ box in the nav. A few
+seconds after load the lid opens and it roams the page, leaping between
+headings, rules, buttons and photo frames, or tunnelling when the next perch is
+far away. In the air nobody has observed it, so it is drawn in superposition:
+awake and asleep at once, both translucent. Landing is a measurement: it
+collapses into one state at random and `|awake⟩` or `|asleep⟩` is written above
+it for a moment. An awake cat leaves when the pointer comes near; an asleep one
+twitches an ear and wakes if clicked. Now and then it goes back into the box,
+which shakes while it is inside. It turns pale over the dark sections.
+
+The roaming engine is adapted from the wren on Paperwren (below); the cat, the
+box and the quantum behaviour are original.
 
 ## Reference and what was taken from it
 
@@ -21,10 +30,10 @@ JetBrains Mono, warm grey paper `#d8d4c9`, pine text `#182d2a`).
 
 | Taken | How it is used here |
 |---|---|
-| The roaming wren (art and flight code, MIT) | Ported to `lib/wren.ts` and `components/Wren.tsx`; credited in the footer and `THIRD_PARTY_NOTICES.md` |
+| The roaming wren's perching engine (MIT) | Adapted in `lib/cat.ts` for the cat; credited in the footer and `THIRD_PARTY_NOTICES.md` |
 | Paper and pine palette | Same family, slightly warmer paper |
 | JetBrains Mono for small labels | Kept for dates, captions and section numbers |
-| Light plumage over dark sections | Teaching section and footer are marked `data-wren-zone="night"` |
+| Pale colouring over dark sections | Teaching section and footer are marked `data-cat-zone="night"` |
 | Calm, sparse copy | Short declarative lines, no slogans |
 
 Not taken: Manrope (a serif suits an academic page better), the hanging file
@@ -77,11 +86,11 @@ Sections opt in through data attributes.
 | `data-parallax` | Scroll-linked drift inside a `.frame` |
 | `data-pipeline-*` | Pinned, scrubbed stage track |
 | `data-autoplay` | Videos play only while on screen |
-| `data-perch` | A place the wren may land (`text`, `bottom`, or top edge) |
+| `data-perch` | A place the cat may land (`text`, `bottom`, or top edge) |
 
 With `prefers-reduced-motion: reduce` nothing animates: content is shown
-as-is, the pipeline becomes a plain list, the wren stays in the logo and the
-videos get native controls.
+as-is, the pipeline becomes a plain list, the cat stays in its closed box and
+the videos get native controls.
 
 ## Rules for future edits
 

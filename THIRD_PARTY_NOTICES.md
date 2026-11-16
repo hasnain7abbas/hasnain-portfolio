@@ -2,15 +2,17 @@
 
 ## Paperwren
 
-The wren that roams this site is the mascot of
+The roaming behaviour of the cat on this site is adapted from the wren in
 [Paperwren](https://github.com/Razee4315/Paperwren), an open-source document
-viewer. Its artwork and flight behaviour are adapted here:
+viewer:
 
-- `components/Wren.tsx` from `website/src/components/Wren.astro` and
-  `website/src/components/FlyingWren.astro`
-- `lib/wren.ts` from `website/src/scripts/wren.ts`
-- `app/icon.svg` from the same wren geometry
-- the `.wren-sky` and `.flyer` rules in `app/globals.css`
+- `lib/cat.ts` from `website/src/scripts/wren.ts`: the layer that scrolls
+  with the page, perch finding (rules, frames, buttons and letter tops), the
+  weighted choice of where to land, following the reader, and reacting to the
+  pointer. The leaping, tunnelling, superposition and box behaviour are new.
+- `components/Cat.tsx` from `website/src/components/FlyingWren.astro`: the
+  structure of the scrolling layer. The cat and box artwork are original.
+- the `.cat-sky` and `.flyer` layout rules in `app/globals.css`
 
 Used under the MIT License:
 

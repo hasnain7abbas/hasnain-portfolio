@@ -6,7 +6,7 @@ import Curriculum from "@/components/Curriculum";
 import Software from "@/components/Software";
 import Writing from "@/components/Writing";
 import Footer from "@/components/Footer";
-import FlyingWren from "@/components/Wren";
+import QuantumCat from "@/components/Cat";
 import Motion from "@/components/Motion";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
         <Writing />
       </main>
       <Footer />
-      <FlyingWren />
+      <QuantumCat />
       <Motion />
     </>
   );

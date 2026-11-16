@@ -1,5 +1,5 @@
 import { siteConfig } from "@/lib/data";
-import { WrenMark } from "./Wren";
+import { CatBox } from "./Cat";
 
 const elsewhere = [
   { label: "GitHub", href: siteConfig.github },
@@ -12,7 +12,7 @@ const elsewhere = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="foot" data-wren-zone="night">
+    <footer id="contact" className="foot" data-cat-zone="night">
       <div className="wrap">
         <span className="label" style={{ display: "block", marginBottom: "1.5rem" }}>
           07 — Contact
@@ -52,9 +52,10 @@ export default function Footer() {
           <div>
             <span className="label">Colophon</span>
             <p className="foot-credit" style={{ marginTop: "0.8rem" }}>
-              <WrenMark size={26} light />
+              <CatBox size={26} />
               <span>
-                The wren that flies through this page is the mascot of{" "}
+                The cat in the ψ box is in superposition, awake and asleep, until it lands and is observed. Its
+                roaming code is adapted from the wren in{" "}
                 <a
                   href="https://github.com/Razee4315/Paperwren"
                   target="_blank"
@@ -63,8 +64,8 @@ export default function Footer() {
                 >
                   Paperwren
                 </a>
-                , an open-source document viewer by Razee4315. Its artwork and flight code are used here under the
-                MIT License. Set in Newsreader and JetBrains Mono.
+                , an open-source document viewer by Razee4315, under the MIT License. Set in Newsreader and JetBrains
+                Mono.
               </span>
             </p>
           </div>

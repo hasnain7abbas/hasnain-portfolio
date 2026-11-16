@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/lib/data";
-import { WrenMark } from "./Wren";
+import { CatBox } from "./Cat";
 
 const links = [
   { label: "Research", href: "#research" },
@@ -35,7 +35,7 @@ export default function Nav() {
       <header className="nav" data-scrolled={scrolled || open}>
         <div className="wrap">
           <a href="#top" className="brand" onClick={() => setOpen(false)}>
-            <WrenMark home />
+            <CatBox home />
             <span>{siteConfig.name}</span>
           </a>
 

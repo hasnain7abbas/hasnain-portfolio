@@ -20,17 +20,16 @@ it to GitHub Pages through `.github/workflows/deploy.yml`.
 ## Where things live
 
 - `lib/data.ts`: all content (profile, teaching, CV, projects, posts)
-- `components/`: one file per section, plus `Motion.tsx` (all animation) and `Wren.tsx`
+- `components/`: one file per section, plus `Motion.tsx` (all animation) and `Cat.tsx`
 - `public/lab/`: teaching-lab photos and clips
 - `public/Hasnain-Abbas-Resume.pdf`: the résumé the site links to
 - `docs/design.md`: design decisions and rules for future edits
 
 ## Credits
 
-The wren that flies through the page is the mascot of
-[Paperwren](https://github.com/Razee4315/Paperwren), an open-source document
-viewer by [Razee4315](https://github.com/Razee4315). Its artwork and flight
-code are adapted here under the MIT License; see
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Schrödinger's cat, which roams the page from its ψ box, moves on a perching
+engine adapted from the wren in [Paperwren](https://github.com/Razee4315/Paperwren),
+an open-source document viewer by [Razee4315](https://github.com/Razee4315),
+under the MIT License; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Built with Next.js, GSAP and Lenis. Set in Newsreader and JetBrains Mono.

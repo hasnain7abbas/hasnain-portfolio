@@ -2,7 +2,7 @@
 @import "lenis/dist/lenis.css";
 
 /* ── Tokens ─────────────────────────────────────────────────────────────
-   Field-notebook palette: paper, pine ink, the wren's moss and its beak. */
+   Field-notebook palette: paper, pine ink, moss and clay. */
 :root {
   --paper: #d9d3c4;
   --paper-deep: #cdc6b4;
@@ -1105,8 +1105,8 @@ figcaption.label {
   margin-top: clamp(3rem, 6vw, 5rem);
 }
 
-/* ── The wren (adapted from Paperwren, MIT; see lib/wren.ts) ── */
-.wren-sky {
+/* ── Schrödinger's cat (roaming code adapted from Paperwren, MIT; see lib/cat.ts) ── */
+.cat-sky {
   position: absolute;
   left: 0;
   top: 0;
@@ -1117,77 +1117,102 @@ figcaption.label {
   z-index: 80;
 }
 .flyer {
-  --body: #2b6e66;
-  --dark: #1f5750;
-  --far: #174841;
-  --belly: #8fbcb3;
-  --beak: #e07a4f;
-  --eye: #23221f;
+  --fur: #262b29;
+  --line: #4f5753;
+  --light: #3c4440;
+  --eye: #d9a441;
+  --pupil: #141716;
+  --pink: #c98a78;
+  --whisker: #9a9a90;
   position: absolute;
   left: 0;
   top: 0;
-  width: 34px;
-  height: 34px;
-  will-change: transform;
+  width: 40px;
+  height: 40px;
+  will-change: transform, opacity;
 }
 .flyer[hidden] {
   display: none;
 }
-/* Light plumage over the dark bands. */
+/* Pale fur over the dark bands. */
 .flyer[data-zone="night"] {
-  --body: #f4efe4;
-  --dark: #cfe3dd;
-  --far: #a9c9c0;
-  --belly: #8fbcb3;
-  --eye: #1f1e1b;
+  --fur: #ece7da;
+  --line: #b4ae9f;
+  --light: #d8d2c3;
+  --eye: #c9922f;
+  --pupil: #1d201f;
+  --whisker: #8d918c;
 }
 .flyer svg {
   display: block;
   overflow: visible;
-  transform-origin: 50% 88%;
+  transform-origin: 50% 92%;
 }
 .flyer path,
-.flyer circle {
+.flyer ellipse {
   transition: fill 0.5s, stroke 0.5s;
 }
-.flyer .body {
-  fill: var(--body);
+.flyer .fur {
+  fill: var(--fur);
 }
-.flyer .dark {
-  fill: var(--dark);
+.flyer .light {
+  fill: var(--light);
 }
-.flyer .far {
-  fill: var(--far);
+.flyer .chest {
+  opacity: 0.7;
 }
-.flyer .coverts {
-  fill: var(--body);
-  opacity: 0.55;
+.flyer .line {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-linecap: round;
 }
-.flyer .belly {
-  fill: var(--belly);
+.flyer .tail {
+  fill: none;
+  stroke: var(--fur);
+  stroke-width: 4.6;
+  stroke-linecap: round;
 }
-.flyer .beak {
-  fill: var(--beak);
+.flyer .tail-curl {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 4.2;
+  stroke-linecap: round;
 }
 .flyer .eye {
   fill: var(--eye);
 }
-.flyer .legs {
+.flyer .pupil {
+  fill: var(--pupil);
+}
+.flyer .pink {
+  fill: var(--pink);
+}
+.flyer .whisk {
   fill: none;
-  stroke: var(--dark);
-  stroke-width: 2.2;
+  stroke: var(--whisker);
+  stroke-width: 0.55;
   stroke-linecap: round;
 }
-.wren-note {
+.flyer .shut {
+  fill: none;
+  stroke: var(--whisker);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+/* The measured state, written above the cat for a moment: |awake⟩ or |asleep⟩. */
+.cat-ket {
   position: absolute;
   left: 0;
   top: 0;
-  font: 600 13px/1 var(--mono);
-  color: var(--moss);
+  font: 400 12px/1 var(--mono);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--ink);
   opacity: 0;
   will-change: transform, opacity;
 }
-.wren-note[data-zone="night"] {
+.cat-ket[data-zone="night"] {
   color: #e3eee6;
 }
 
