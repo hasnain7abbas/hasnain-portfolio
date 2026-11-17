@@ -10,10 +10,14 @@ booktabs table, a bibliography, and the source of every block one click away.
 - **Typeset:** Computer Modern (CMU Serif, CMU Typewriter) for everything printed.
 - **Handwritten:** the name, section titles and margin notes in Kalam, roughened
   with a chalk filter, as if the author annotated the page.
-- **Lively, not flashy:** handwriting is written on as it scrolls in, chalk
-  underlines and circles draw themselves (rough-notation), Figure 1 is a
-  memristor loop the reader can drag, and the `.tex` switch turns the whole page
-  into its LaTeX source.
+- **Lively, not flashy:** the chalk is driven by the reader's scroll. Important
+  phrases get underlined, double-underlined, boxed or circled, and the margin
+  notes and section titles are written, as you scroll past them, the way a
+  lecturer writes while you follow. Chalk never erases: scrolling back up keeps
+  what is written. A little dust falls from the chalk tip while it moves, and an
+  optional chalk sound (off by default, the "chalk" switch in the top bar)
+  scratches in proportion to how fast it writes. Figure 1 is a memristor loop
+  the reader can drag, and the `.tex` switch turns the page into its source.
 
 ## Tokens (`app/globals.css`)
 
@@ -48,13 +52,18 @@ acknowledgements, references (contact), ∎.
 - `components/TopBar.tsx`: running head and the page / `.tex` switch (key `S`),
   which sets `data-view` on `<html>`.
 - `components/LoopFigure.tsx`: Figure 1.
-- `components/Motion.tsx`: Lenis, write-on handwriting (`data-write`), strokes
-  (`data-draw`), chalk marks (`data-mark`), the title-page entrance
-  (`data-hero`), reveals (`data-reveal`) and videos (`data-autoplay`).
+- `lib/chalk.ts`: the chalk itself. `markPath` draws a hand-made underline,
+  double underline, box or circle around line boxes (seeded, so a mark keeps its
+  wobble), `Dust` is the falling dust on a fixed canvas, and `ChalkSound` makes
+  the scratch from filtered noise with the Web Audio API (no audio files).
+- `components/Motion.tsx`: Lenis, scroll-driven handwriting (`data-write`) and
+  marks (`data-mark="underline|double|box|circle"`, `data-tone`), figure strokes
+  (`data-draw`), the title-page entrance (`data-hero`), reveals (`data-reveal`)
+  and videos (`data-autoplay`).
 
 With `prefers-reduced-motion: reduce` nothing animates: marks are drawn at once,
-handwriting is simply there, Figure 1 does not sweep by itself, and videos get
-controls.
+handwriting is simply there, there is no dust or sound, Figure 1 does not sweep
+by itself, and videos get controls.
 
 ## Rules for future edits
 

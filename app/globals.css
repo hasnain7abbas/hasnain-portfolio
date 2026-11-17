@@ -200,6 +200,47 @@ strong {
 .switch:active .switch-opt.is-on {
   transform: scale(0.96);
 }
+.sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+.sound svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sound svg path:first-child {
+  fill: currentColor;
+  fill-opacity: 0.25;
+}
+.sound:hover,
+.sound.is-on {
+  color: var(--chalk-yellow);
+  border-color: rgb(240 210 124 / 0.5);
+}
+.sound:active {
+  transform: scale(0.96);
+}
+.sound-label {
+  display: none;
+}
+@media (min-width: 560px) {
+  .sound-label {
+    display: inline;
+  }
+}
 .pdf {
   padding: 6px 12px;
   border: 1px solid var(--rule);
@@ -991,6 +1032,33 @@ strong {
 }
 .closing .row + .row {
   margin-top: 2.2rem;
+}
+
+/* ── Chalk: marks over the text, and the dust that falls while writing ── */
+.chalk-marks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.92;
+  filter: url(#chalk);
+}
+.chalk-dust {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 60;
+  pointer-events: none;
+}
+html[data-view="source"] .chalk-marks,
+html[data-view="source"] .chalk-dust {
+  display: none;
 }
 
 /* ── The source view: every block shows the LaTeX it compiles from ── */

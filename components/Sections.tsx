@@ -72,10 +72,10 @@ const ALGO: { n: number; indent: number; html: React.ReactNode; tex: string }[] 
   { n: 3, indent: 1, html: <>spin-coat the film; anneal</>, tex: String.raw`\State spin-coat the film; anneal` },
   { n: 4, indent: 1, html: <>check phase and microstructure: XRD, FTIR, profilometry, impedance</>, tex: String.raw`\State check phase and microstructure: XRD, FTIR, profilometry, impedance` },
   { n: 5, indent: 1, html: <>record <M>P</M>–<M>E</M> loops on a Sawyer–Tower tester <span className="cm">▷ <M>{String.raw`P_r,\ E_c`}</M></span></>, tex: String.raw`\State record $P$--$E$ loops on a Sawyer--Tower tester \Comment{$P_r,\ E_c$}` },
-  { n: 6, indent: 1, html: <>sweep and pulse <M>I</M>–<M>V</M> on a Keithley 2602 from Lua scripts <span className="cm">▷ <M>G</M></span></>, tex: String.raw`\State sweep and pulse $I$--$V$ on a Keithley 2602 from Lua scripts \Comment{$G$}` },
+  { n: 6, indent: 1, html: <>sweep and pulse <M>I</M>–<M>V</M> on a Keithley 2602 from <span data-mark="circle" data-tone="green">Lua</span> scripts <span className="cm">▷ <M>G</M></span></>, tex: String.raw`\State sweep and pulse $I$--$V$ on a Keithley 2602 from Lua scripts \Comment{$G$}` },
   { n: 7, indent: 0, html: <><b>end for</b></>, tex: String.raw`\EndFor` },
   { n: 8, indent: 0, html: <>map the measured <M>G</M> into CrossSim; train an MLP on MNIST in PyTorch</>, tex: String.raw`\State map the measured $G$ into CrossSim; train an MLP on MNIST in PyTorch` },
-  { n: 9, indent: 0, html: <><b>return</b> inference accuracy with the devices as synapses</>, tex: String.raw`\State \Return inference accuracy with the devices as synapses` },
+  { n: 9, indent: 0, html: <><b>return</b> <span data-mark="box" data-tone="yellow">inference accuracy</span> with the devices as synapses</>, tex: String.raw`\State \Return inference accuracy with the devices as synapses` },
 ];
 
 export function Research() {
@@ -108,7 +108,11 @@ memristor-based hardware.`}
               <span data-mark="underline" data-tone="yellow">memristor and neuromorphic applications</span>.
             </p>
             <p>
-              The work covers the whole chain, from a beaker of sol to a trained network, summarised in{" "}
+              The work covers{" "}
+              <span data-mark="double" data-tone="blue">
+                the whole chain
+              </span>
+              , from a beaker of sol to a trained network, summarised in{" "}
               <a href="#alg-thesis" className="ref">Algorithm 1</a>. I am seeking a{" "}
               <span data-mark="box" data-tone="pink">PhD position</span> in neuromorphic computing, synaptic devices and
               memristor-based hardware.
@@ -231,8 +235,11 @@ weeks of term. I photographed them as I set them up.`}
               </span>
               ) I am a teaching assistant in the physics teaching laboratory at Quaid-i-Azam University. The experiments
               in <a href="#fig-benches" className="ref">Figures 2</a> and <a href="#photographs" className="ref">3</a> are
-              from the first weeks of term: the Hall effect, nuclear magnetic resonance, and the emission spectra of
-              gas-discharge lamps.
+              from the first weeks of term:{" "}
+              <span data-mark="underline" data-tone="yellow">
+                the Hall effect, nuclear magnetic resonance, and the emission spectra of gas-discharge lamps
+              </span>
+              .
             </p>
           </div>
         </Tx>
@@ -402,8 +409,15 @@ measurements (Listing~\ref{lst:sweep}).`}
               <a href="https://saqlainabbas.me/" target="_blank" rel="noopener noreferrer" className="ref">
                 Saqlain Abbas
               </a>{" "}
-              as the teacher I turn to when I am stuck. Most of what I write is free simulation software for students who
-              do not have a laboratory nearby, listed in <a href="#tab-software" className="ref">Table 1</a>; the rest is
+              as the teacher I turn to when I am stuck. Most of what I write is{" "}
+              <span data-mark="underline" data-tone="green">
+                free simulation software
+              </span>{" "}
+              for students who{" "}
+              <span data-mark="double" data-tone="pink">
+                do not have a laboratory nearby
+              </span>
+              , listed in <a href="#tab-software" className="ref">Table 1</a>; the rest is
               the code that runs my measurements (<a href="#lst-sweep" className="ref">Listing 1</a>).
             </p>
           </div>
@@ -501,7 +515,7 @@ ${projects.map((p) => `    \\href{${p.link}}{${esc(p.title)}} & ${esc(p.descript
 
 /* ── 4 Curriculum vitae ───────────────────────────────────────────────── */
 
-function Entries({ items }: { items: Entry[] }) {
+function Entries({ items, marks = {} }: { items: Entry[]; marks?: Record<string, [string, string]> }) {
   return (
     <dl className="cv">
       {items.map((e) => (
@@ -511,7 +525,16 @@ function Entries({ items }: { items: Entry[] }) {
             {e.note && <span className="cv-note">{e.note}</span>}
           </dt>
           <dd>
-            <b>{e.title}</b>, <i>{e.place}</i>
+            <b>
+              {marks[e.title] ? (
+                <span data-mark={marks[e.title][0]} data-tone={marks[e.title][1]}>
+                  {e.title}
+                </span>
+              ) : (
+                e.title
+              )}
+            </b>
+            , <i>{e.place}</i>
             {e.points && (
               <ul className="itemize">
                 {e.points.map((p) => (
@@ -554,7 +577,13 @@ export function Curriculum() {
         </Tx>
       </Row>
 
-      <Row>
+      <Row
+        note={
+          <Note arrow="left" tone="pink">
+            MPhil expected September 2026
+          </Note>
+        }
+      >
         <Tx src={cvTex("Education", education)}>
           <h3 className="subsec">Education</h3>
           <Entries items={education} />
@@ -589,7 +618,7 @@ export function Curriculum() {
       <Row>
         <Tx src={cvTex("Awards", awards)}>
           <h3 className="subsec">Awards</h3>
-          <Entries items={awards} />
+          <Entries items={awards} marks={{ "Best Lecturer Award": ["box", "yellow"] }} />
         </Tx>
       </Row>
     </section>
@@ -685,7 +714,13 @@ Saqlain Abbas, who taught me most of the software I know.`}
                     className="ref tt"
                     {...(r.href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                   >
-                    {r.show}
+                    {r.label === "Email" ? (
+                      <span data-mark="underline" data-tone="yellow">
+                        {r.show}
+                      </span>
+                    ) : (
+                      r.show
+                    )}
                   </a>
                   .
                 </span>

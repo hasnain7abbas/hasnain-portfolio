@@ -109,9 +109,17 @@ export default function TitlePage() {
             <span data-mark="underline" data-tone="yellow">
               switch
             </span>
-            , and train neural networks that use them as synapses. I teach in the physics laboratory, photograph what
-            the instruments do with light, and write the software I wished I had as a student: free simulations that
-            run offline.
+
+            , and train neural networks that use them as{" "}
+            <span data-mark="circle" data-tone="pink">
+              synapses
+            </span>
+            . I teach in the physics laboratory, photograph what the instruments do with light, and write the software I
+            wished I had as a student:{" "}
+            <span data-mark="underline" data-tone="green">
+              free simulations that run offline
+            </span>
+            .
           </p>
         </Tx>
       </Row>

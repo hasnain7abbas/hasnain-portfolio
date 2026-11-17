@@ -30,5 +30,5 @@ it to GitHub Pages through `.github/workflows/deploy.yml`.
 ## Credits
 
 Set in Computer Modern (CMU Serif and CMU Typewriter, SIL Open Font License,
-see `app/fonts/CMU-OFL.txt`) and Kalam. Maths by KaTeX, chalk marks by
-rough-notation, motion by GSAP and Lenis, built with Next.js.
+see `app/fonts/CMU-OFL.txt`) and Kalam. Maths by KaTeX, motion by GSAP and
+Lenis, built with Next.js. The chalk marks, dust and sound are in `lib/chalk.ts`.
