@@ -20,16 +20,15 @@ it to GitHub Pages through `.github/workflows/deploy.yml`.
 ## Where things live
 
 - `lib/data.ts`: all content (profile, teaching, CV, projects, posts)
-- `components/`: one file per section, plus `Motion.tsx` (all animation) and `Cat.tsx`
+- `components/`: the title page, the sections, `Paper.tsx` (blocks, margin notes),
+  `LoopFigure.tsx` (Figure 1), `TopBar.tsx` (the page / `.tex` switch) and
+  `Motion.tsx` (all animation)
 - `public/lab/`: teaching-lab photos and clips
 - `public/Hasnain-Abbas-Resume.pdf`: the résumé the site links to
 - `docs/design.md`: design decisions and rules for future edits
 
 ## Credits
 
-Schrödinger's cat, which roams the page from its ψ box, moves on a perching
-engine adapted from the wren in [Paperwren](https://github.com/Razee4315/Paperwren),
-an open-source document viewer by [Razee4315](https://github.com/Razee4315),
-under the MIT License; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-Built with Next.js, GSAP and Lenis. Set in Newsreader and JetBrains Mono.
+Set in Computer Modern (CMU Serif and CMU Typewriter, SIL Open Font License,
+see `app/fonts/CMU-OFL.txt`) and Kalam. Maths by KaTeX, chalk marks by
+rough-notation, motion by GSAP and Lenis, built with Next.js.

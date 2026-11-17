@@ -4,9 +4,8 @@
 
 Read `docs/design.md` before changing anything visual. In short:
 
-- Palette, type and easing are tokens in `app/globals.css`. Do not add colours.
-- Newsreader for text, JetBrains Mono for labels. No other faces.
-- Hairline rules, 2px corners. No gradients, shadows, pills, icon cards or dark-mode toggle.
+- The page is a LaTeX paper on a blackboard: Computer Modern for print, Kalam for handwriting, chalk colours from the tokens in `app/globals.css`.
+- Every block is a `Tx` with its rendered form and its LaTeX source (the `.tex` switch shows the source).
 - All motion lives in `components/Motion.tsx` and is opted into with data attributes. Every animation must do nothing under `prefers-reduced-motion`.
 - Content lives in `lib/data.ts` and follows the résumé. Do not invent facts.
-- The cat's roaming engine (`lib/cat.ts`) is adapted from Paperwren's wren under the MIT License. Keep the credit in the footer and `THIRD_PARTY_NOTICES.md`.
+- Do not use class names that are also Tailwind utilities (`table`, `grid`, ...).

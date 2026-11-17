@@ -1,102 +1,66 @@
 # Design notes
 
-One page, one direction. This file records the decisions so later edits stay
-consistent with them.
+## Direction: a paper on a blackboard
 
-## Direction: field notebook
+The page is a short paper about Hasnain, typeset as LaTeX would set it and
+written up on a blackboard. It should read as the work of a physicist with a
+software engineer's habits: equations, numbered figures, an algorithm, a
+booktabs table, a bibliography, and the source of every block one click away.
 
-Natural and academic. The page reads like a well-set lab notebook: warm paper,
-pine-green ink, serif text, monospaced labels for dates and captions, hairline
-rules instead of cards. Content comes from the résumé and is treated as a CV,
-not as marketing.
-
-**Signature move:** Schrödinger's cat. It lives in the ψ box in the nav. A few
-seconds after load the lid opens and it roams the page, leaping between
-headings, rules, buttons and photo frames, or tunnelling when the next perch is
-far away. In the air nobody has observed it, so it is drawn in superposition:
-awake and asleep at once, both translucent. Landing is a measurement: it
-collapses into one state at random and `|awake⟩` or `|asleep⟩` is written above
-it for a moment. An awake cat leaves when the pointer comes near; an asleep one
-twitches an ear and wakes if clicked. Now and then it goes back into the box,
-which shakes while it is inside. It turns pale over the dark sections.
-
-The roaming engine is adapted from the wren on Paperwren (below); the cat, the
-box and the quantum behaviour are original.
-
-## Reference and what was taken from it
-
-[Paperwren](https://razee4315.github.io/Paperwren/) (Astro, Manrope +
-JetBrains Mono, warm grey paper `#d8d4c9`, pine text `#182d2a`).
-
-| Taken | How it is used here |
-|---|---|
-| The roaming wren's perching engine (MIT) | Adapted in `lib/cat.ts` for the cat; credited in the footer and `THIRD_PARTY_NOTICES.md` |
-| Paper and pine palette | Same family, slightly warmer paper |
-| JetBrains Mono for small labels | Kept for dates, captions and section numbers |
-| Pale colouring over dark sections | Teaching section and footer are marked `data-cat-zone="night"` |
-| Calm, sparse copy | Short declarative lines, no slogans |
-
-Not taken: Manrope (a serif suits an academic page better), the hanging file
-icons, the theme switcher.
+- **Typeset:** Computer Modern (CMU Serif, CMU Typewriter) for everything printed.
+- **Handwritten:** the name, section titles and margin notes in Kalam, roughened
+  with a chalk filter, as if the author annotated the page.
+- **Lively, not flashy:** handwriting is written on as it scrolls in, chalk
+  underlines and circles draw themselves (rough-notation), Figure 1 is a
+  memristor loop the reader can drag, and the `.tex` switch turns the whole page
+  into its LaTeX source.
 
 ## Tokens (`app/globals.css`)
 
 | Token | Value | Role |
 |---|---|---|
-| `--paper` | `#d9d3c4` | Page background (a mid-tone paper, deliberately not off-white) |
-| `--paper-deep` | `#cdc6b4` | Alternate section background |
-| `--ink` | `#132b27` | Text |
-| `--ink-soft` | `#3c524c` | Secondary text |
-| `--moss` | `#1f5750` | Accent: links on hover, institutions, the I–V curve |
-| `--clay` | `#a8472a` | Focus ring and the curve tracer only |
-| `--night` | `#0f211e` | Teaching section and footer |
+| `--board` | `#121514` | Background |
+| `--ink` | `#e7e4db` | Text (chalk white) |
+| `--ink-soft` / `--ink-dim` | `#b4b8b2` / `#858b86` | Secondary text, captions, labels |
+| `--chalk-yellow` | `#f0d27c` | Notes, the Figure 1 tracer |
+| `--chalk-pink` | `#ee9fae` | Notes, circles |
+| `--chalk-blue` | `#93c6e6` | Links (the hyperref colour), notes |
+| `--chalk-green` | `#a8d59c` | Notes |
 
-- Type: Newsreader (display and text, optical sizing on) and JetBrains Mono (labels).
-- Scale: body 18px, section headings up to 3.6rem, the name up to 8.5rem. The name is the only oversized element.
-- Headings are plain descriptive titles in roman, the way a paper or CV would set them. No slogans, no two-tone italic taglines.
-- Copy is written as a physicist would write it: say what was made, measured or simulated, and with what.
-- Text that sits in a reveal mask needs padding inside the mask so capitals and italics are not clipped (`.hero-title .line`, `.split-line-mask`).
-- Grid: 12 columns, 24px gutter, 1360px max width.
-- Corners: 2px. Borders: hairline rules only, no boxed cards, no shadows.
-- Texture: paper grain at 5% opacity.
-- Easing: `--ease-out-expo` (`cubic-bezier(0.16, 1, 0.3, 1)`) for everything.
-- One mode. There is no dark theme toggle.
+Layout: a 42rem text column with a 15rem margin for notes on wide screens
+(1100px and up); on narrow screens notes follow their paragraph with a chalk
+rule. Text is justified and hyphenated from 640px up, ragged right below.
 
-## Sections
+## Structure
 
-1. Hero: name, one-line statement, résumé and email buttons, Fig. 1 (schematic pinched I–V loop).
-2. Research profile: profile text, portrait, research interests.
-3. Thesis pipeline: Material → Thin film → Device → Network. Pinned and scrubbed sideways on wide screens.
-4. Teaching: Fall 2026 teaching-assistant work with lab photos and two clips, then earlier teaching.
-5. Curriculum vitae: education, research experience, methods, conferences, awards.
-6. Software: project list.
-7. Writing: four posts as native `<details>`.
-8. Contact and colophon.
+Title page (name, affiliation, abstract, equation (1), Figure 1), contents,
+1 Research (with Algorithm 1), 2 Teaching and the photographs (Figures 2 and 3),
+3 Software (Table 1, Listing 1), 4 Curriculum vitae, Appendix A Notes,
+acknowledgements, references (contact), ∎.
 
-## Motion (`components/Motion.tsx`)
+## How the pieces work
 
-GSAP + ScrollTrigger + SplitText, Lenis for smooth scroll on pointer devices.
-Sections opt in through data attributes.
+- `components/Paper.tsx`: `Tx` (a block with its rendered form and its LaTeX
+  source), `Row` (text column plus margin), `Note` (handwritten margin note with
+  a chalk arrow), `SectionHead`, `Caption`.
+- `lib/tex.tsx`: KaTeX rendered at build time (`M`), and the LaTeX highlighter
+  for the source view.
+- `components/TopBar.tsx`: running head and the page / `.tex` switch (key `S`),
+  which sets `data-view` on `<html>`.
+- `components/LoopFigure.tsx`: Figure 1.
+- `components/Motion.tsx`: Lenis, write-on handwriting (`data-write`), strokes
+  (`data-draw`), chalk marks (`data-mark`), the title-page entrance
+  (`data-hero`), reveals (`data-reveal`) and videos (`data-autoplay`).
 
-| Attribute | Effect |
-|---|---|
-| `data-hero` | Load sequence: name rises out of a mask, figure draws, copy follows |
-| `data-split` | Masked line reveal on headings |
-| `data-reveal` | Rise and fade on entry, batched and staggered |
-| `data-parallax` | Scroll-linked drift inside a `.frame` |
-| `data-pipeline-*` | Pinned, scrubbed stage track |
-| `data-autoplay` | Videos play only while on screen |
-| `data-perch` | A place the cat may land (`text`, `bottom`, or top edge) |
-
-With `prefers-reduced-motion: reduce` nothing animates: content is shown
-as-is, the pipeline becomes a plain list, the cat stays in its closed box and
-the videos get native controls.
+With `prefers-reduced-motion: reduce` nothing animates: marks are drawn at once,
+handwriting is simply there, Figure 1 does not sweep by itself, and videos get
+controls.
 
 ## Rules for future edits
 
-- No new colours. No gradients, shadows, pills or icon cards.
-- Left-aligned. Dates and captions in mono, everything else in Newsreader.
-- Facts come from the résumé; do not invent numbers or duties.
-- Media go in `public/lab/` as WebP or H.264 MP4 without audio, and are
-  listed in `lib/data.ts` with real alt text and a date.
+- Facts come from the résumé (`lib/data.ts`); do not invent numbers or duties.
+- Every new block gets a `Tx` with honest LaTeX source.
+- Handwriting is for the name, section titles and short notes only.
+- Avoid class names that are also Tailwind utilities (`table`, `grid`, `hidden`,
+  `block`...): Tailwind generates them and they override the page's styles.
 - Asset paths are absolute under `/hasnain-portfolio/` (the GitHub Pages base path).

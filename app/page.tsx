@@ -1,32 +1,32 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import { Research, Pipeline } from "@/components/Research";
-import Teaching from "@/components/Teaching";
-import Curriculum from "@/components/Curriculum";
-import Software from "@/components/Software";
-import Writing from "@/components/Writing";
-import Footer from "@/components/Footer";
-import QuantumCat from "@/components/Cat";
+import TopBar from "@/components/TopBar";
+import TitlePage from "@/components/TitlePage";
+import { Closing, Contents, Curriculum, Notes, Research, Software, Teaching } from "@/components/Sections";
 import Motion from "@/components/Motion";
 
 export default function Home() {
   return (
     <>
       <a href="#research" className="skip">
-        Skip to content
+        Skip to the research
       </a>
-      <Nav />
-      <main>
-        <Hero />
+      <TopBar />
+      <main className="paper">
+        <TitlePage />
+        <Contents />
         <Research />
-        <Pipeline />
         <Teaching />
-        <Curriculum />
         <Software />
-        <Writing />
+        <Curriculum />
+        <Notes />
+        <Closing />
       </main>
-      <Footer />
-      <QuantumCat />
+      {/* Chalk: a slight roughness on every stroke and on the handwriting. */}
+      <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
+        <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="7" result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
       <Motion />
     </>
   );
