@@ -183,7 +183,11 @@ ${researchInterests.map((r) => "  \\item " + esc(r)).join("\n")}
 
 /* ── 2 Teaching, and the photographs ──────────────────────────────────── */
 
-function Media({ item, eager = false }: { item: LabMedia; eager?: boolean }) {
+/* Every width a photo exists at, so the browser can fetch the smallest that fills its slot. */
+const srcSet = (item: LabMedia) =>
+  [...(item.widths ?? []).map((w) => `${item.src.replace(/\.webp$/, `-${w}.webp`)} ${w}w`), `${item.src} ${item.width}w`].join(", ");
+
+function Media({ item, sizes, eager = false }: { item: LabMedia; sizes: string; eager?: boolean }) {
   if (item.kind === "video") {
     return (
       <video
@@ -202,7 +206,16 @@ function Media({ item, eager = false }: { item: LabMedia; eager?: boolean }) {
   }
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
-    <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading={eager ? "eager" : "lazy"} decoding="async" />
+    <img
+      src={item.src}
+      srcSet={item.widths ? srcSet(item) : undefined}
+      sizes={item.widths ? sizes : undefined}
+      alt={item.alt}
+      width={item.width}
+      height={item.height}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+    />
   );
 }
 
@@ -262,7 +275,7 @@ weeks of term. I photographed them as I set them up.`}
               {ta.benches.map((item, i) => (
                 <div key={item.src} className="plate">
                   <div className="photo">
-                    <Media item={item} />
+                    <Media item={item} sizes={i === 0 ? "(min-width: 1100px) 560px, (min-width: 760px) 56vw, 92vw" : "(min-width: 1100px) 400px, (min-width: 760px) 40vw, 92vw"} />
                   </div>
                   <p className="subcap">
                     ({sub[i]}) {item.caption}
@@ -298,7 +311,7 @@ ${ta.spectra.map((m) => `  \\subfloat[]{\\includegraphics[width=.155\\linewidth]
               {ta.spectra.map((item, i) => (
                 <div key={item.src} className="plate">
                   <div className="photo photo--tall">
-                    <Media item={item} />
+                    <Media item={item} sizes="(min-width: 1100px) 160px, (min-width: 760px) 15vw, 46vw" />
                   </div>
                   <p className="subcap">({sub[i]})</p>
                 </div>

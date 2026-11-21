@@ -64,21 +64,21 @@ export default function TitlePage() {
       </p>
 
       <Tx src={TITLE_SRC} className="title-block">
-        <h1 className="hand title" data-write data-hero>
+        <h1 className="hand title" data-write>
           Hasnain Abbas
         </h1>
-        <p className="subtitle" data-hero>
+        <p className="subtitle" data-hero="1">
           Experimental physicist &middot; photographer &middot; software engineer at heart
         </p>
-        <p className="affil" data-hero>
+        <p className="affil" data-hero="2">
           Department of Physics, Quaid-i-Azam University, Islamabad
           <br />
           <span className="dim">from Skardu, Gilgit-Baltistan</span>
         </p>
-        <p className="date" data-hero>
+        <p className="date" data-hero="3">
           {month}
         </p>
-        <p className="title-links" data-hero>
+        <p className="title-links" data-hero="4">
           <a href={siteConfig.resume} target="_blank" rel="noopener" className="ref">
             Résumé (PDF)
           </a>
@@ -101,10 +101,10 @@ export default function TitlePage() {
         }
       >
         <Tx src={ABSTRACT_SRC} className="abstract" >
-          <p className="abstract-head" data-hero>
+          <p className="abstract-head" data-hero="5">
             Abstract
           </p>
-          <p data-hero>
+          <p data-hero="6">
             I grow Co-substituted <M>{String.raw`\mathrm{BiFeO_3}`}</M> thin films, measure how they{" "}
             <span data-mark="underline" data-tone="yellow">
               switch
@@ -134,7 +134,7 @@ export default function TitlePage() {
         }
       >
         <Tx src={EQ_SRC} className="eq" >
-          <div data-hero>
+          <div data-hero="7">
             <div className="eq-wide">
               <M display>{KET}</M>
             </div>

@@ -1,5 +1,41 @@
 @import "tailwindcss";
-@import "lenis/dist/lenis.css";
+
+/* ── Computer Modern (CMU, SIL OFL), subset; regular is preloaded, the rest load on use ── */
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/hasnain-portfolio/fonts/cmu-serif-500-roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/hasnain-portfolio/fonts/cmu-serif-500-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/hasnain-portfolio/fonts/cmu-serif-700-roman.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/hasnain-portfolio/fonts/cmu-serif-700-italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CMU Typewriter Text";
+  src: url("/hasnain-portfolio/fonts/cmu-typewriter-text-500-roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ── Tokens ─────────────────────────────────────────────────────────────
    A paper typeset in Computer Modern, on a blackboard, annotated in chalk. */
@@ -15,8 +51,10 @@
   --chalk-blue: #93c6e6;
   --chalk-green: #a8d59c;
 
-  --cm: var(--font-cm), "CMU Serif", "Latin Modern Roman", "Times New Roman", serif;
-  --tt: var(--font-tt), "CMU Typewriter Text", ui-monospace, monospace;
+  --cm: "CMU Serif", "Latin Modern Roman", "Times New Roman", serif;
+  --tt: "CMU Typewriter Text", ui-monospace, monospace;
+  /* Chalk grain: a small pre-rendered mask with gaps (public/textures), cheap to paint. */
+  --grain: url("/hasnain-portfolio/textures/chalk-grain.png");
   --hand: var(--font-hand), "Segoe Print", cursive;
 
   --text: 1.1875rem;
@@ -33,6 +71,7 @@
 /* ── Base ── */
 html {
   background: var(--board);
+  scroll-behavior: smooth;
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -40,7 +79,9 @@ html {
 }
 
 body {
+  /* Chalk dust ground into the board: part of the background, so scrolling costs nothing. */
   background:
+    url("/hasnain-portfolio/textures/board-dust.png"),
     radial-gradient(120% 80% at 50% 0%, var(--board-up), transparent 70%),
     var(--board);
   color: var(--ink);
@@ -53,16 +94,14 @@ body {
   overflow-x: clip;
 }
 
-/* Chalk dust. */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0.06;
-  mix-blend-mode: screen;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Handwriting and chalk marks get the grain as a mask: chalk never lays down a solid line. */
+.hand,
+.note p,
+.chalk-marks .mark {
+  -webkit-mask-image: var(--grain);
+  mask-image: var(--grain);
+  -webkit-mask-size: 128px;
+  mask-size: 128px;
 }
 
 ::selection {
@@ -123,8 +162,7 @@ strong {
   z-index: 70;
   height: var(--bar-h);
   padding-top: env(safe-area-inset-top);
-  background: rgb(18 21 20 / 0.82);
-  backdrop-filter: blur(8px);
+  background: rgb(18 21 20 / 0.95);
   border-bottom: 1px solid transparent;
   transition: border-color var(--dur) var(--ease-out-expo);
 }
@@ -193,12 +231,13 @@ strong {
     background-color 0.25s var(--ease-out-expo),
     color 0.25s var(--ease-out-expo);
 }
-.switch-opt.is-on {
+html[data-view="page"] .switch-page,
+html[data-view="source"] .switch-tex {
   background: var(--ink);
   color: var(--board);
 }
-.switch:active .switch-opt.is-on {
-  transform: scale(0.96);
+.switch:active {
+  transform: scale(0.97);
 }
 .sound {
   display: inline-flex;
@@ -225,8 +264,15 @@ strong {
   fill: currentColor;
   fill-opacity: 0.25;
 }
+.sound .sound-on,
+html[data-sound="on"] .sound .sound-off {
+  display: none;
+}
+html[data-sound="on"] .sound .sound-on {
+  display: inline;
+}
 .sound:hover,
-.sound.is-on {
+html[data-sound="on"] .sound {
   color: var(--chalk-yellow);
   border-color: rgb(240 210 124 / 0.5);
 }
@@ -327,7 +373,6 @@ strong {
   font-size: 1.15rem;
   line-height: 1.25;
   color: var(--chalk-yellow);
-  filter: url(#chalk);
   margin-top: 0.75rem;
 }
 .note--pink {
@@ -423,7 +468,6 @@ strong {
   font-weight: 300;
   letter-spacing: -0.005em;
   color: var(--ink);
-  filter: url(#chalk);
   padding: 0 0.15em;
 }
 .subtitle {
@@ -450,9 +494,60 @@ strong {
   gap: 0.7rem;
   font-size: var(--small);
 }
-.js:not(.is-ready) [data-hero],
-.js:not(.is-ready) .title {
-  visibility: hidden;
+@media (prefers-reduced-motion: no-preference) {
+  .title {
+    animation: chalk-write 1.25s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.12s both;
+  }
+  [data-hero] {
+    animation: rise 0.7s var(--ease-out-expo) both;
+  }
+  [data-hero="1"] {
+    animation-delay: 0.45s;
+  }
+  [data-hero="2"] {
+    animation-delay: 0.52s;
+  }
+  [data-hero="3"] {
+    animation-delay: 0.59s;
+  }
+  [data-hero="4"] {
+    animation-delay: 0.66s;
+  }
+  [data-hero="5"] {
+    animation-delay: 0.78s;
+  }
+  [data-hero="6"] {
+    animation-delay: 0.84s;
+  }
+  [data-hero="7"] {
+    animation-delay: 0.95s;
+  }
+}
+@keyframes chalk-write {
+  from {
+    clip-path: inset(-25% 102% -25% -5%);
+  }
+  to {
+    clip-path: inset(-25% -5% -25% -5%);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Handwriting below the title waits to be written by the page script as the reader scrolls. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-write]:not(.title) > p,
+  .js .sec-t[data-write] {
+    clip-path: inset(-25% 102% -25% -3%);
+  }
+  .js [data-write] [data-draw] {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
 }
 
 .abstract {
@@ -467,7 +562,6 @@ strong {
 .abstract .tx-r > p:last-child {
   padding-inline: clamp(0rem, 4vw, 2.5rem);
   hyphens: auto;
-  text-wrap: pretty;
 }
 @media (min-width: 640px) {
   .abstract .tx-r > p:last-child {
@@ -538,8 +632,26 @@ strong {
   height: auto;
   overflow: visible;
 }
-.loop .chalk {
-  filter: url(#chalk);
+@media (prefers-reduced-motion: no-preference) {
+  .js .loop .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .js .loop.is-drawn .draw {
+    animation: stroke-in 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  .js .loop.is-drawn .draw:nth-of-type(2) {
+    animation-delay: 0.15s;
+  }
+  .js .loop.is-drawn .curve {
+    animation-duration: 1.5s;
+    animation-delay: 0.35s;
+  }
+}
+@keyframes stroke-in {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 .loop .gridline {
   stroke: rgb(231 228 219 / 0.09);
@@ -691,7 +803,6 @@ strong {
   font-weight: 400;
   line-height: 1.1;
   color: var(--ink);
-  filter: url(#chalk);
   padding-right: 0.1em;
 }
 .subsec {
@@ -705,7 +816,6 @@ strong {
 .prose p {
   text-align: left;
   hyphens: auto;
-  text-wrap: pretty;
 }
 @media (min-width: 640px) {
   .prose p {
@@ -1034,19 +1144,41 @@ strong {
   margin-top: 2.2rem;
 }
 
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+/* Opacity only: moving blocks would shift the chalk marks measured inside them. */
+@keyframes settle {
+  from {
+    opacity: 0;
+  }
+}
+
 /* ── Chalk: marks over the text, and the dust that falls while writing ── */
 .chalk-marks {
   position: absolute;
   left: 0;
   top: 0;
+  width: 0;
+  height: 0;
   z-index: 5;
-  overflow: visible;
   pointer-events: none;
+}
+.chalk-marks .mark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0.92;
-  filter: url(#chalk);
 }
 .chalk-dust {
   position: fixed;
@@ -1095,6 +1227,9 @@ html[data-view="source"] .margin {
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {

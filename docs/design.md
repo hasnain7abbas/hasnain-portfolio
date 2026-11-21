@@ -42,6 +42,16 @@ Title page (name, affiliation, abstract, equation (1), Figure 1), contents,
 3 Software (Table 1, Listing 1), 4 Curriculum vitae, Appendix A Notes,
 acknowledgements, references (contact), ∎.
 
+## How it is built and served
+
+Next.js is used only to generate static HTML. The published page runs no React:
+`scripts/strip-next-runtime.mjs` removes Next's client runtime and the hydration
+copy of the page after `next build`. The only script is `public/site.js`, about
+5 KB compressed, bundled by `scripts/build-client.mjs` from `client/main.ts`.
+
+`npm run build` does all three steps; `npm run dev` builds `site.js` once and
+starts Next (run `npm run client` again after editing `client/main.ts`).
+
 ## How the pieces work
 
 - `components/Paper.tsx`: `Tx` (a block with its rendered form and its LaTeX
@@ -49,21 +59,50 @@ acknowledgements, references (contact), ∎.
   a chalk arrow), `SectionHead`, `Caption`.
 - `lib/tex.tsx`: KaTeX rendered at build time (`M`), and the LaTeX highlighter
   for the source view.
-- `components/TopBar.tsx`: running head and the page / `.tex` switch (key `S`),
-  which sets `data-view` on `<html>`.
-- `components/LoopFigure.tsx`: Figure 1.
+- `components/TopBar.tsx`: running head, the chalk-sound switch and the page /
+  `.tex` switch (key `S`). Their state is `data-sound` and `data-view` on `<html>`.
+- `components/LoopFigure.tsx` and `lib/loop.ts`: Figure 1, rendered at its
+  starting point; the client script makes it sweep and lets the reader drag it.
 - `lib/chalk.ts`: the chalk itself. `markPath` draws a hand-made underline,
   double underline, box or circle around line boxes (seeded, so a mark keeps its
   wobble), `Dust` is the falling dust on a fixed canvas, and `ChalkSound` makes
   the scratch from filtered noise with the Web Audio API (no audio files).
-- `components/Motion.tsx`: Lenis, scroll-driven handwriting (`data-write`) and
-  marks (`data-mark="underline|double|box|circle"`, `data-tone`), figure strokes
-  (`data-draw`), the title-page entrance (`data-hero`), reveals (`data-reveal`)
-  and videos (`data-autoplay`).
+- `client/main.ts`: everything that moves. Scroll-driven handwriting
+  (`data-write`) and marks (`data-mark="underline|double|box|circle"`,
+  `data-tone`), dust, the sound, Figure 1, the two switches and videos
+  (`data-autoplay`).
+- CSS alone runs the title being written (`chalk-write`), the title-page entrance
+  (`data-hero="1..7"`, staggered), Figure 1 drawing itself (`.is-drawn`) and the
+  fade of figures and tables as they scroll in (`data-reveal`, scroll-driven, so
+  browsers without `animation-timeline` simply show them).
 
 With `prefers-reduced-motion: reduce` nothing animates: marks are drawn at once,
 handwriting is simply there, there is no dust or sound, Figure 1 does not sweep
 by itself, and videos get controls.
+
+## Performance rules
+
+Measured on a 4x slowed CPU and a 4G connection, median of three runs, against
+the previous build: the name is on screen at 1.7 s instead of 5.0 s, scrolling
+runs at 55 fps with 3% slow frames instead of 35 fps with 22%, and the page
+transfers 0.84 MB instead of 1.5 MB. Keep it that way:
+
+- No SVG filters (`feTurbulence`, `feDisplacementMap`) on anything visible: the
+  browser recomputes them on every repaint. Textures are pre-rendered PNGs in
+  `public/textures/` (the board dust and the chalk-grain mask).
+- No `backdrop-filter`, no full-screen overlays with `mix-blend-mode`.
+- No `text-wrap: pretty`; it made layout several times slower.
+- The client script never reads layout inside a scroll frame. Positions are
+  measured in `measure()` (on load, fonts, resize and after the title page
+  lands) and frames only do arithmetic and writes. There is no animation loop
+  while nothing moves.
+- Elements that contain chalk marks must not move with transforms while they
+  come in (the reveal is opacity-only), or the marks are measured in the wrong
+  place.
+- Photos have smaller copies (`name-<width>.webp`, listed as `widths` in
+  `lib/data.ts`) and `sizes`, so each screen fetches what it shows. Videos are
+  encoded at the 360 px they are shown at.
+- Only CMU Serif regular is preloaded; other faces load when used.
 
 ## Rules for future edits
 
@@ -73,3 +112,5 @@ by itself, and videos get controls.
 - Avoid class names that are also Tailwind utilities (`table`, `grid`, `hidden`,
   `block`...): Tailwind generates them and they override the page's styles.
 - Asset paths are absolute under `/hasnain-portfolio/` (the GitHub Pages base path).
+- Components must stay server components: no `"use client"`, because the
+  runtime that would run them is stripped. Interactivity goes in `client/`.

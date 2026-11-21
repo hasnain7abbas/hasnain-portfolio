@@ -95,11 +95,12 @@ export class Dust {
   }
 
   resize() {
-    this.dpr = Math.min(2, window.devicePixelRatio || 1);
+    // Specks are a pixel or two across: 1x resolution is enough, and a quarter of the fill cost on retina screens.
+    this.dpr = 1;
     this.w = window.innerWidth;
     this.h = window.innerHeight;
-    this.canvas.width = Math.round(this.w * this.dpr);
-    this.canvas.height = Math.round(this.h * this.dpr);
+    this.canvas.width = this.w;
+    this.canvas.height = this.h;
   }
 
   /** A pinch of dust at a point, in proportion to how fast the chalk moved. */
@@ -123,28 +124,46 @@ export class Dust {
     return this.specks.length > 0;
   }
 
-  step(dt: number) {
+  /** Advances and draws the dust. Returns false once the air is clear, so the caller can stop its loop. */
+  step(dt: number): boolean {
     const ctx = this.ctx;
-    if (!ctx) return;
-    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    if (!ctx) return false;
+    if (!this.specks.length) {
+      // One last clear, then the canvas is hidden and costs nothing until the next pinch of dust.
+      if (this.dirty) {
+        ctx.clearRect(0, 0, this.w, this.h);
+        this.dirty = false;
+        this.canvas.style.visibility = "hidden";
+      }
+      return false;
+    }
+    if (!this.dirty) {
+      this.canvas.style.visibility = "visible";
+      this.dirty = true;
+    }
     ctx.clearRect(0, 0, this.w, this.h);
-    if (!this.specks.length) return;
     const sx = window.scrollX, sy = window.scrollY;
-    this.specks = this.specks.filter((s) => (s.age += dt) < s.life);
+    const drag = Math.exp(-2.5 * dt), dragY = Math.exp(-1.2 * dt);
+    let n = 0;
     for (const s of this.specks) {
+      if ((s.age += dt) >= s.life) continue;
       // Light specks: they fall, but air holds them back.
-      s.vy += 90 * dt;
-      s.vx *= Math.exp(-2.5 * dt);
-      s.vy *= Math.exp(-1.2 * dt);
+      s.vy = (s.vy + 90 * dt) * dragY;
+      s.vx *= drag;
       s.x += s.vx * dt;
       s.y += s.vy * dt;
       const fade = 1 - s.age / s.life;
       ctx.globalAlpha = 0.75 * fade * fade;
       ctx.fillStyle = s.tone;
       ctx.fillRect(s.x - sx, s.y - sy, s.size, s.size);
+      this.specks[n++] = s;
     }
+    this.specks.length = n;
     ctx.globalAlpha = 1;
+    return true;
   }
+
+  private dirty = false;
 
   clear() {
     this.specks = [];
@@ -208,11 +227,28 @@ export class ChalkSound {
     if (this.enabled) this.drive = Math.min(1, this.drive + px / 60);
   }
 
-  step(dt: number) {
-    if (!this.enabled || !this.ctx || !this.gain) return;
+  /** Returns true while the scratch is still audible, so the caller knows to keep ticking. */
+  step(dt: number): boolean {
+    if (!this.enabled || !this.ctx || !this.gain) return false;
     this.level += (this.drive - this.level) * (1 - Math.exp(-dt * 30));
     this.drive *= Math.exp(-dt * 9);
-    const v = this.level < 0.01 ? 0 : 0.16 * this.level * (0.75 + Math.random() * 0.5);
-    this.gain.gain.setTargetAtTime(v, this.ctx.currentTime, 0.015);
+    if (this.level < 0.01) {
+      if (this.level > 0) {
+        this.level = 0;
+        this.gain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.015);
+      }
+      return false;
+    }
+    this.gain.gain.setTargetAtTime(0.16 * this.level * (0.75 + Math.random() * 0.5), this.ctx.currentTime, 0.015);
+    return true;
+  }
+
+  /** Suspends the audio graph while nothing is being written, so it costs no CPU in the background. */
+  idle() {
+    if (this.ctx && this.ctx.state === "running" && this.level === 0) void this.ctx.suspend();
+  }
+
+  wake() {
+    if (this.enabled && this.ctx && this.ctx.state === "suspended") void this.ctx.resume();
   }
 }

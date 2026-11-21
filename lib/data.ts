@@ -71,6 +71,8 @@ export const pipeline: Stage[] = [
 export interface LabMedia {
   kind: "photo" | "video";
   src: string;
+  /** Smaller copies of a photo (or poster), as `name-<width>.webp` beside the original. */
+  widths?: number[];
   poster?: string;
   alt: string;
   caption: string;
@@ -91,6 +93,7 @@ export const teachingAssistant = {
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/hall-effect.webp",
+      widths: [800],
       alt: "A lab bench with three power supplies, three multimeters and a Hall effect apparatus wired together with red and blue leads.",
       caption: "Hall effect: power supplies, multimeters and the sample between the magnet pole pieces.",
       date: "18 Aug 2026",
@@ -100,6 +103,7 @@ export const teachingAssistant = {
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/nmr.webp",
+      widths: [640, 1280],
       alt: "A nuclear magnetic resonance setup: a DC supply, an electromagnet with two coils, an NMR oscillator and an oscilloscope showing a trace.",
       caption: "Nuclear magnetic resonance: electromagnet, NMR oscillator and oscilloscope.",
       date: "3 Sep 2026",
@@ -110,17 +114,18 @@ export const teachingAssistant = {
   spectra: [
     {
       kind: "video",
-      src: "/hasnain-portfolio/lab/spectra.mp4",
-      poster: "/hasnain-portfolio/lab/spectra-poster.webp",
+      src: "/hasnain-portfolio/lab/spectra-360.mp4",
+      poster: "/hasnain-portfolio/lab/spectra-poster-360.webp",
       alt: "A glowing magenta gas-discharge tube in a dark room, the camera moving across to the spectrometer beside it.",
       caption: "Gas-discharge tube and spectrometer.",
       date: "16 Sep 2026",
-      width: 720,
-      height: 1280,
+      width: 360,
+      height: 640,
     },
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-1.webp",
+      widths: [360, 720],
       alt: "A narrow gas-discharge tube glowing magenta in the dark.",
       caption: "Discharge tube, magenta emission.",
       date: "16 Sep 2026",
@@ -130,6 +135,7 @@ export const teachingAssistant = {
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-2.webp",
+      widths: [360, 720],
       alt: "A discharge lamp glowing pink-white between two dark housings.",
       caption: "Spectral lamp in its housing.",
       date: "17 Sep 2026",
@@ -139,6 +145,7 @@ export const teachingAssistant = {
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-3.webp",
+      widths: [360, 720],
       alt: "A discharge lamp glowing bright yellow-orange, seen through a round opening.",
       caption: "Discharge lamp, yellow emission.",
       date: "17 Sep 2026",
@@ -148,6 +155,7 @@ export const teachingAssistant = {
     {
       kind: "photo",
       src: "/hasnain-portfolio/lab/discharge-4.webp",
+      widths: [360, 720],
       alt: "A tall gas-discharge tube glowing blue-green.",
       caption: "Discharge tube, blue-green emission.",
       date: "17 Sep 2026",
@@ -156,13 +164,13 @@ export const teachingAssistant = {
     },
     {
       kind: "video",
-      src: "/hasnain-portfolio/lab/probe-station.mp4",
-      poster: "/hasnain-portfolio/lab/probe-station-poster.webp",
+      src: "/hasnain-portfolio/lab/probe-station-360.mp4",
+      poster: "/hasnain-portfolio/lab/probe-station-poster-360.webp",
       alt: "A probe tip under a microscope, shown on a monitor above a probe station and a DC supply.",
       caption: "Probe tip under the optical microscope.",
       date: "24 Sep 2026",
-      width: 720,
-      height: 1280,
+      width: 360,
+      height: 640,
     },
   ] as LabMedia[],
 };

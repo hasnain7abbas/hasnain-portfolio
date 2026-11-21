@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# bundled page script (built from client/main.ts)
+/public/site.js

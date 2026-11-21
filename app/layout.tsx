@@ -1,31 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { Kalam } from "next/font/google";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
-/* Computer Modern (CMU Serif and Typewriter, SIL OFL; see app/fonts/CMU-OFL.txt), subset to the characters in use. */
-const cmSerif = localFont({
-  variable: "--font-cm",
-  display: "swap",
-  src: [
-    { path: "./fonts/cmu-serif-500-roman.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/cmu-serif-500-italic.woff2", weight: "400", style: "italic" },
-    { path: "./fonts/cmu-serif-700-roman.woff2", weight: "700", style: "normal" },
-    { path: "./fonts/cmu-serif-700-italic.woff2", weight: "700", style: "italic" },
-  ],
-});
-
-const cmTypewriter = localFont({
-  variable: "--font-tt",
-  display: "swap",
-  src: [{ path: "./fonts/cmu-typewriter-text-500-roman.woff2", weight: "400", style: "normal" }],
-});
+/*
+ * Computer Modern (CMU Serif and Typewriter, SIL OFL; see public/fonts/CMU-OFL.txt)
+ * is declared by hand in globals.css, so that only the regular face, which the
+ * first screen needs, is preloaded. The others load when text uses them.
+ */
+const BASE = "/hasnain-portfolio";
 
 const kalam = Kalam({
   variable: "--font-hand",
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["300", "400"],
   display: "swap",
 });
 
@@ -49,22 +37,21 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-/* Marks the document as scripted so the title page can wait for its entrance,
-   and releases it after a few seconds no matter what. */
-const boot = `document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("is-ready")},4000);`;
+/* Marks the page as scripted before first paint, so handwriting waits to be written.
+   If the page script has not started within five seconds, everything is simply shown. */
+const boot = `(function(d){d.classList.add("js");setTimeout(function(){if(!d.dataset.chalk)d.classList.remove("js")},5000)})(document.documentElement);`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      data-view="page"
-      suppressHydrationWarning
-      className={`${cmSerif.variable} ${cmTypewriter.variable} ${kalam.variable}`}
-    >
+    <html lang="en" data-view="page" suppressHydrationWarning className={kalam.variable}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: boot }} />
+        <link rel="preload" href={`${BASE}/fonts/cmu-serif-500-roman.woff2`} as="font" type="font/woff2" crossOrigin="" />
+        <script data-keep dangerouslySetInnerHTML={{ __html: boot }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script data-keep src={`${BASE}/site.js`} defer />
+      </body>
     </html>
   );
 }
